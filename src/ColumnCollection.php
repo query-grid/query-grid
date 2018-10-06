@@ -27,7 +27,7 @@ class ColumnCollection extends Collection
 
     public function getByKey($key): Column
     {
-        return $this->filter(function (Column $c) use ($key) {
+        return $this->filter(function(Column $c) use ($key) {
             return $c->getKey() === $key;
         })->get(0);
     }
@@ -64,21 +64,21 @@ class ColumnCollection extends Collection
 
     public function getFilterable(): ColumnCollection
     {
-        return $this->filter(function (Column $c) {
+        return $this->filter(function(Column $c) {
             return $c->isFilterable();
         });
     }
 
     public function getSortable(): ColumnCollection
     {
-        return $this->filter(function (Column $c) {
+        return $this->filter(function(Column $c) {
             return $c->isSortable();
         });
     }
 
     public function getQueryable(): ColumnCollection
     {
-        return $this->filter(function (Column $c) {
+        return $this->filter(function(Column $c) {
             return $c->isQueryable();
         });
     }
@@ -100,7 +100,7 @@ class ColumnCollection extends Collection
 
     public function getKeys(): array
     {
-        return $this->map(function (Column $column) {
+        return $this->map(function(Column $column) {
             return $column->getKey();
         });
     }
@@ -116,7 +116,7 @@ class ColumnCollection extends Collection
 
     public function toArray(): array
     {
-        return $this->map(function (Column $c) {
+        return $this->map(function(Column $c) {
             return [
                 'key' => $c->getKey(),
                 'label' => $c->getLabel(),
