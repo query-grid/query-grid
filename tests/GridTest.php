@@ -28,7 +28,7 @@ class GridTest extends TestCase
     /** @test */
     public function itCanCreateAGridFromADataSource()
     {
-        $result = $this->grid->getRows();
+        $result = $this->grid->getResults();
         $this->assertEquals(1, $this->provider->getCalls());
         $this->assertInstanceOf(GridResult::class, $result);
     }
@@ -133,7 +133,7 @@ class GridTest extends TestCase
             $c->filterable();
         });
 
-        $this->grid->getRows();
+        $this->grid->getResults();
 
         $this->assertInstanceOf(FilterCollection::class, $this->provider->getFilters());
         $this->assertCount(1, $this->provider->getFilters());
@@ -159,7 +159,7 @@ class GridTest extends TestCase
             $c->filterable();
         });
 
-        $this->grid->getRows();
+        $this->grid->getResults();
 
         $this->assertInstanceOf(FilterCollection::class, $this->provider->getFilters());
         $this->assertCount(2, $this->provider->getFilters());
@@ -187,7 +187,7 @@ class GridTest extends TestCase
             $c->filterable();
         });
 
-        $this->grid->getRows();
+        $this->grid->getResults();
 
         $this->assertInstanceOf(FilterCollection::class, $this->provider->getFilters());
         $this->assertCount(3, $this->provider->getFilters());
@@ -210,7 +210,7 @@ class GridTest extends TestCase
             $c->queryable();
         });
 
-        $this->grid->getRows();
+        $this->grid->getResults();
 
         $this->assertInstanceOf(Query::class, $this->provider->getQuery());
         $this->assertEquals('hello', $this->provider->getQuery()->getValue());
@@ -226,7 +226,7 @@ class GridTest extends TestCase
             $c->sortable();
         });
 
-        $this->grid->getRows();
+        $this->grid->getResults();
 
         $this->assertInstanceOf(SortCollection::class, $this->provider->getSorts());
         $this->assertEquals('name', $this->provider->getSorts()->get(0)->field());
@@ -245,7 +245,7 @@ class GridTest extends TestCase
             $c->sortable();
         });
 
-        $this->grid->getRows();
+        $this->grid->getResults();
 
         $this->assertInstanceOf(SortCollection::class, $this->provider->getSorts());
         $this->assertEquals('name', $this->provider->getSorts()->get(0)->field());
@@ -272,7 +272,7 @@ class GridTest extends TestCase
             ['name' => 'Rachel', 'age' => 27,],
         ]);
 
-        $gridResult = $this->grid->getRows();
+        $gridResult = $this->grid->getResults();
         $rows = $gridResult->toArray()['items'];
         $this->assertInstanceOf(GridResult::class, $gridResult);
         $this->assertCount(2, $rows);
@@ -295,7 +295,7 @@ class GridTest extends TestCase
             ['name' => 'Andrew', 'age' => 34,],
         ]);
 
-        $this->grid->getRows();
+        $this->grid->getResults();
     }
 
     /**
@@ -314,7 +314,7 @@ class GridTest extends TestCase
             $c->filterable();
         });
 
-        $this->grid->getRows();
+        $this->grid->getResults();
     }
 
     /**
@@ -330,6 +330,6 @@ class GridTest extends TestCase
         $this->grid->addColumn('age', 'Label age', function (Column $c) {
             $c->sortable();
         });
-        $this->grid->getRows();
+        $this->grid->getResults();
     }
 }

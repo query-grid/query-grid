@@ -49,7 +49,7 @@ class Grid
      * @return GridResult
      * @throws \Exception
      */
-    public function getRows(): GridResult
+    public function getResults(): GridResult
     {
         if (is_null($this->result)) {
             $this->parseFilters();
