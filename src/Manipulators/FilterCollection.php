@@ -15,6 +15,4 @@ class FilterCollection extends Collection
     {
         return $this->items->offsetGet($index);
     }
-
-
 }

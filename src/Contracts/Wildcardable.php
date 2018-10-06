@@ -9,5 +9,4 @@ interface Wildcardable
     public function hasWildcardSuffix(): bool;
 
     public function getValue();
-
 }

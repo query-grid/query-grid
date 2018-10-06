@@ -6,7 +6,6 @@ use Willishq\QueryGrid\Contracts\Wildcardable;
 
 class Query implements Wildcardable
 {
-
     /** @var string */
     private $value;
 

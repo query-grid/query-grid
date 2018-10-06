@@ -1,9 +1,9 @@
 <?php
 
 namespace Willishq\QueryGrid;
+
 /**
- * Class ColumnCollection
- * @package Willishq\DataGrid
+ * Class ColumnCollection.
  *
  * @property ColumnCollection $filterable
  * @property ColumnCollection $queryable
@@ -62,21 +62,21 @@ class ColumnCollection extends Collection
         return in_array($key, $this->queryableKeys);
     }
 
-    public function getFilterable(): ColumnCollection
+    public function getFilterable(): self
     {
         return $this->filter(function (Column $c) {
             return $c->isFilterable();
         });
     }
 
-    public function getSortable(): ColumnCollection
+    public function getSortable(): self
     {
         return $this->filter(function (Column $c) {
             return $c->isSortable();
         });
     }
 
-    public function getQueryable(): ColumnCollection
+    public function getQueryable(): self
     {
         return $this->filter(function (Column $c) {
             return $c->isQueryable();
@@ -107,24 +107,22 @@ class ColumnCollection extends Collection
 
     public function __get(string $name)
     {
-        $method = 'get' . ucfirst($name);
+        $method = 'get'.ucfirst($name);
         if (method_exists($this, $method)) {
-            return ($this->$method());
+            return $this->$method();
         }
-        return null;
     }
 
     public function toArray(): array
     {
         return $this->map(function (Column $c) {
             return [
-                'key' => $c->getKey(),
-                'label' => $c->getLabel(),
-                'sortable' => $c->isSortable(),
+                'key'        => $c->getKey(),
+                'label'      => $c->getLabel(),
+                'sortable'   => $c->isSortable(),
                 'filterable' => $c->isFilterable(),
-                'queryable' => $c->isQueryable(),
+                'queryable'  => $c->isQueryable(),
             ];
         });
     }
-
 }
