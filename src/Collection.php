@@ -2,7 +2,6 @@
 
 namespace Willishq\QueryGrid;
 
-use ArrayAccess;
 use Countable;
 
 class Collection implements Countable
@@ -27,24 +26,25 @@ class Collection implements Countable
         return $this->items->count();
     }
 
-    public function filter(Callable $cb)
+    public function filter(callable $cb)
     {
         return new static(array_values(array_filter($this->all(), $cb)));
     }
 
-    public function map(Callable $callable, ...$additional)
+    public function map(callable $callable, ...$additional)
     {
         return array_map(function ($item) use ($callable, $additional) {
             return $callable($item, ...$additional);
         }, $this->all());
     }
 
-    public function keyBy(Callable $cb)
+    public function keyBy(callable $cb)
     {
         $items = [];
         foreach ($this->items as $item) {
             $items[$cb($item)] = $item;
         }
+
         return new static($items);
     }
 }

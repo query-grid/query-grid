@@ -2,8 +2,8 @@
 
 namespace Willishq\QueryGridTests\Manipulators;
 
-use Willishq\QueryGridTests\TestCase;
 use Willishq\QueryGrid\Manipulators\Query;
+use Willishq\QueryGridTests\TestCase;
 
 class QueryTest extends TestCase
 {
@@ -32,5 +32,4 @@ class QueryTest extends TestCase
         $this->assertEquals('value', $query->getValue());
         $this->assertTrue($query->hasWildcardSuffix());
     }
-
 }

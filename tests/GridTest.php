@@ -2,7 +2,6 @@
 
 namespace Willishq\QueryGridTests;
 
-use Willishq\QueryGridTests\Fixtures\NullDataProvider;
 use Willishq\QueryGrid\Column;
 use Willishq\QueryGrid\ColumnCollection;
 use Willishq\QueryGrid\Grid;
@@ -11,6 +10,7 @@ use Willishq\QueryGrid\Manipulators\Filter;
 use Willishq\QueryGrid\Manipulators\FilterCollection;
 use Willishq\QueryGrid\Manipulators\Query;
 use Willishq\QueryGrid\Manipulators\SortCollection;
+use Willishq\QueryGridTests\Fixtures\NullDataProvider;
 
 class GridTest extends TestCase
 {
@@ -48,7 +48,6 @@ class GridTest extends TestCase
     /** @test */
     public function itCanAddAColumnWithOptionsToAGrid()
     {
-
         $this->grid->addColumn('column', 'Label', function (Column $column) {
             $column->filterable()->sortable()->queryable();
         });
@@ -59,7 +58,6 @@ class GridTest extends TestCase
         $this->assertTrue($columns->get(0)->isSortable());
         $this->assertTrue($columns->get(0)->isQueryable());
     }
-
 
     /** @test */
     public function itCanAddMultipleColumnsToAGrid()
@@ -126,7 +124,7 @@ class GridTest extends TestCase
         $this->grid->addQueryParams([
             'filter' => [
                 'name' => 'hello',
-            ]
+            ],
         ]);
 
         $this->grid->addColumn('name', 'Label Name', function (Column $c) {
@@ -147,9 +145,9 @@ class GridTest extends TestCase
     {
         $this->grid->addQueryParams([
             'filter' => [
-                'name' => 'hello',
+                'name'       => 'hello',
                 'created_at' => 'hello',
-            ]
+            ],
         ]);
 
         $this->grid->addColumn('name', 'Label Name', function (Column $c) {
@@ -175,9 +173,9 @@ class GridTest extends TestCase
     {
         $this->grid->addQueryParams([
             'filter' => [
-                'name' => 'hello,itsme',
+                'name'       => 'hello,itsme',
                 'created_at' => 'hello',
-            ]
+            ],
         ]);
 
         $this->grid->addColumn('name', 'Label Name', function (Column $c) {
@@ -259,25 +257,25 @@ class GridTest extends TestCase
         $this->grid
             ->addColumn('name', 'Name', function (Column $c) {
                 $c->formatter(function ($value) {
-                    return 'prepend-' . $value;
+                    return 'prepend-'.$value;
                 });
             })
             ->addColumn('age', 'Age', function (Column $c) {
                 $c->formatter(function ($value) {
-                    return $value . ' Years';
+                    return $value.' Years';
                 });
             });
         $this->provider->setData([
-            ['name' => 'Andrew', 'age' => 34,],
-            ['name' => 'Rachel', 'age' => 27,],
+            ['name' => 'Andrew', 'age' => 34],
+            ['name' => 'Rachel', 'age' => 27],
         ]);
 
         $gridResult = $this->grid->getResults();
         $rows = $gridResult->toArray()['items'];
         $this->assertInstanceOf(GridResult::class, $gridResult);
         $this->assertCount(2, $rows);
-        $this->assertEquals('prepend-' . 'Andrew', $rows[0]['name']);
-        $this->assertEquals('prepend-' . 'Rachel', $rows[1]['name']);
+        $this->assertEquals('prepend-'.'Andrew', $rows[0]['name']);
+        $this->assertEquals('prepend-'.'Rachel', $rows[1]['name']);
         $this->assertEquals('34 Years', $rows[0]['age']);
         $this->assertEquals('27 Years', $rows[1]['age']);
     }
@@ -287,12 +285,11 @@ class GridTest extends TestCase
      */
     public function itHandlesColumnKeysNotExistingOnARow()
     {
-
         $this->grid
             ->addColumn('name', 'Name')
             ->addColumn('ager', 'Age');
         $this->provider->setData([
-            ['name' => 'Andrew', 'age' => 34,],
+            ['name' => 'Andrew', 'age' => 34],
         ]);
 
         $this->grid->getResults();
@@ -306,7 +303,7 @@ class GridTest extends TestCase
     {
         $this->grid->addQueryParams([
             'filter' => [
-                'name' => 'nope'
+                'name' => 'nope',
             ],
         ]);
         $this->grid->addColumn('name', 'Label Name');
@@ -324,7 +321,7 @@ class GridTest extends TestCase
     public function itCanOnlySortSortableColumns()
     {
         $this->grid->addQueryParams([
-            'sort' => 'name,age'
+            'sort' => 'name,age',
         ]);
         $this->grid->addColumn('name', 'Label Name');
         $this->grid->addColumn('age', 'Label age', function (Column $c) {
