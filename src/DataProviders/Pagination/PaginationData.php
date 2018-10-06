@@ -72,7 +72,7 @@ class PaginationData implements PaginationDataContract
 
         if (isset($this->totalItems)) {
             $response['totalItems'] = $this->getTotalItems();
-            $response['lastPage'] = (int)ceil($this->getTotalItems() / $this->getPerPage());
+            $response['lastPage'] = (int) ceil($this->getTotalItems() / $this->getPerPage());
         }
 
         return $response;
