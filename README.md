@@ -2,8 +2,7 @@
 
 Framework Agnostic DataGrid / Query Builder implementation.
 
-## Badges
-Everybody loves badges, we have some
+_Everybody loves badges, check ours out:_
 
 [![Build Status](https://img.shields.io/travis/willishq/query-grid/master.svg?style=flat-square)](https://travis-ci.org/willishq/query-grid)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/willishq/query-grid/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/willishq/query-grid/?branch=master) 
