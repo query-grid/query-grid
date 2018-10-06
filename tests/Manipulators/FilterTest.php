@@ -2,8 +2,8 @@
 
 namespace Willishq\QueryGridTests\Manipulators;
 
-use Willishq\QueryGridTests\TestCase;
 use Willishq\QueryGrid\Manipulators\Filter;
+use Willishq\QueryGridTests\TestCase;
 
 class FilterTest extends TestCase
 {
@@ -36,7 +36,6 @@ class FilterTest extends TestCase
         $this->assertTrue($filter->hasWildcardSuffix());
     }
 
-
     /** @test */
     public function itCanDetectGreaterThanFilters()
     {
@@ -59,7 +58,6 @@ class FilterTest extends TestCase
         $this->assertFalse($filter->hasLessOrEqual());
     }
 
-
     /** @test */
     public function itCanDetectGreaterOrEqualFilters()
     {
@@ -71,7 +69,6 @@ class FilterTest extends TestCase
         $this->assertFalse($filter->hasLessOrEqual());
     }
 
-
     /** @test */
     public function itCanDetectLessOrEqualFilters()
     {
@@ -82,5 +79,4 @@ class FilterTest extends TestCase
         $this->assertFalse($filter->hasLessThan());
         $this->assertFalse($filter->hasGreaterThan());
     }
-
 }

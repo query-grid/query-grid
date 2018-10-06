@@ -49,17 +49,19 @@ class ColumnTest extends TestCase
         $this->assertEquals($column, $response);
         $this->assertTrue($column->isSortable());
     }
+
     /** @test */
     public function itCanFormatAGivenValue()
     {
         $column = new Column('column', 'Column Label');
 
         $column->formatter(function ($value) {
-            return '_' . $value;
+            return '_'.$value;
         });
 
         $this->assertEquals('_hello', $column->format('hello'));
     }
+
     /** @test */
     public function itCanReturnAValueIfThereIsNoFormatter()
     {

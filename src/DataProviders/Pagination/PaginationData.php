@@ -63,7 +63,7 @@ class PaginationData implements PaginationDataContract
     {
         $response = [
             'currentPage' => $this->getCurrentPage(),
-            'perPage' => $this->getPerPage(),
+            'perPage'     => $this->getPerPage(),
         ];
 
         if (isset($this->itemCount)) {

@@ -29,9 +29,9 @@ class GridResult
     public function toArray()
     {
         return [
-            'columns' => $this->columns->toArray(),
+            'columns'    => $this->columns->toArray(),
             'pagination' => $this->pagination()->toArray(),
-            'items' => $this->items(),
+            'items'      => $this->items(),
         ];
     }
 

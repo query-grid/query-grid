@@ -2,8 +2,8 @@
 
 namespace Willishq\QueryGridTests\Manipulators;
 
-use Willishq\QueryGridTests\TestCase;
 use Willishq\QueryGrid\Manipulators\Sort;
+use Willishq\QueryGridTests\TestCase;
 
 class SortTest extends TestCase
 {
@@ -14,6 +14,7 @@ class SortTest extends TestCase
         $this->assertFalse($sort->descending());
         $this->assertEquals('field', $sort->field());
     }
+
     /** @test */
     public function itCanCreateADescendingSortEntity()
     {

@@ -2,8 +2,6 @@
 
 namespace Willishq\QueryGrid;
 
-use Willishq\QueryGrid\Manipulators\Filter;
-
 class Column
 {
     /**
@@ -27,7 +25,7 @@ class Column
      */
     private $queryable = false;
     /**
-     * @var Callable|null
+     * @var callable|null
      */
     private $formatter;
 
@@ -50,6 +48,7 @@ class Column
     public function sortable(): self
     {
         $this->sortable = true;
+
         return $this;
     }
 
@@ -61,6 +60,7 @@ class Column
     public function filterable(): self
     {
         $this->filterable = true;
+
         return $this;
     }
 
@@ -72,16 +72,16 @@ class Column
     public function queryable(): self
     {
         $this->queryable = true;
+
         return $this;
     }
-
 
     public function isQueryable(): bool
     {
         return $this->queryable;
     }
 
-    public function formatter(Callable $formatter)
+    public function formatter(callable $formatter)
     {
         $this->formatter = $formatter;
     }
@@ -91,6 +91,7 @@ class Column
         if (!is_null($this->formatter)) {
             return ($this->formatter)($value);
         }
+
         return $value;
     }
 }

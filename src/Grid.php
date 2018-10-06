@@ -11,8 +11,6 @@ use Willishq\QueryGrid\Manipulators\Filter;
 use Willishq\QueryGrid\Manipulators\Query;
 use Willishq\QueryGrid\Manipulators\Sort;
 
-/**
- */
 class Grid
 {
     /**
@@ -32,7 +30,6 @@ class Grid
     private $filterable = false;
     private $result;
 
-
     public function __construct(DataProvider $dataProvider, $queryParams = [])
     {
         $this->dataProvider = $dataProvider;
@@ -46,8 +43,9 @@ class Grid
     }
 
     /**
-     * @return GridResult
      * @throws \Exception
+     *
+     * @return GridResult
      */
     public function getResults(): GridResult
     {
@@ -62,11 +60,12 @@ class Grid
                 return $this->columns->keyBy(function (Column $c) {
                     return $c->getKey();
                 })->map(function ($column, $row) {
-                    return $this->getColumnValueFromDataRow($column, (array)$row);
+                    return $this->getColumnValueFromDataRow($column, (array) $row);
                 }, $row);
             });
             $this->result = new GridResult($paginationData, $data, $this->columns);
         }
+
         return $this->result;
     }
 
@@ -75,10 +74,11 @@ class Grid
         if (!array_key_exists($c->getKey(), $row)) {
             throw new ColumnKeyNotInRowException();
         }
+
         return $c->format($row[$c->getKey()]);
     }
 
-    public function addColumn(string $key, string $label, Callable $callable = null): self
+    public function addColumn(string $key, string $label, callable $callable = null): self
     {
         $column = new Column($key, $label);
 
@@ -89,6 +89,7 @@ class Grid
         $this->queryable = $column->isQueryable() || $this->queryable;
         $this->filterable = $column->isFilterable() || $this->filterable;
         $this->columns->add($column);
+
         return $this;
     }
 
@@ -129,7 +130,6 @@ class Grid
                 } else {
                     throw new ColumnNotFilterableException();
                 }
-
             }
         }
     }

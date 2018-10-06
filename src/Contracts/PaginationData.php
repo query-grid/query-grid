@@ -19,5 +19,4 @@ interface PaginationData
     public function getItemCount(): ?int;
 
     public function toArray(): array;
-
 }
