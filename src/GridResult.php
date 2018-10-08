@@ -20,7 +20,7 @@ class GridResult
     public function __construct(ColumnCollection $columns)
     {
         $this->columns = $columns;
-        $rows = new RowCollection();
+        $this->rows = new RowCollection();
     }
 
     /**
@@ -33,9 +33,7 @@ class GridResult
 
     public function setData(array $rows)
     {
-        $collection = new RowCollection();
-        $collection->populate($rows);
-        $this->rows = $collection;
+        $this->rows->populate($rows);
     }
 
     public function getRows(): array

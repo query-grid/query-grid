@@ -64,7 +64,11 @@ class Grid
 
     public function getResult(): GridResult
     {
-        return new GridResult($this->columns);
+        $result = new GridResult($this->columns);
+
+        $result->setData($this->dataProvider->get());
+
+        return $result;
     }
 
 }

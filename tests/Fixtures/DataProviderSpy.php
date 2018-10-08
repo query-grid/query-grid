@@ -9,7 +9,7 @@ class DataProviderSpy implements DataProvider
 
     private $resource;
 
-    public $values;
+    public $values = [];
 
     public function getResource(): string
     {
@@ -26,7 +26,7 @@ class DataProviderSpy implements DataProvider
         $this->values = $data;
     }
 
-    public function get()
+    public function get(): array
     {
         return $this->values;
     }

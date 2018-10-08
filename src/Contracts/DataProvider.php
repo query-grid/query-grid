@@ -6,5 +6,5 @@ interface DataProvider
 {
     public function setResource(string $resource);
 
-    public function get();
+    public function get(): array;
 }
