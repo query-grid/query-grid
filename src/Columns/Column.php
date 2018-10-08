@@ -49,7 +49,7 @@ class Column
         return $this;
     }
 
-    public function format(string $value)
+    public function format($value)
     {
         return ($this->formatter)($value);
     }

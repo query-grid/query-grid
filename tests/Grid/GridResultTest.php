@@ -19,16 +19,24 @@ class GridResultTest extends \Tests\TestCase
         $this->assertEquals($columns, $resultColumns);
     }
 
-    /**
-     * @test
-     * @dataProvider gridDataProvider
-     */
-    public function itCanGetTheResultData($data)
+    /** @test */
+    public function itCanGetTheResultData()
     {
         $columns = new ColumnCollection();
         $columns->add(new Column('name', 'Name'));
         $result = new GridResult($columns);
-        $result->setData($data);
+        $result->setData([
+            [
+                'name' => 'Andrew',
+                'email' => 'andrew@example.com',
+                'created_at' => '1920-05-20',
+            ],
+            [
+                'name' => 'Rachel',
+                'email' => 'rachel@example.com',
+                'created_at' => '1940-05-20',
+            ],
+        ]);
 
         $this->assertCount(2, $result->getRows());
         $this->assertEquals([
@@ -41,11 +49,8 @@ class GridResultTest extends \Tests\TestCase
         ], $result->getRows());
     }
 
-    /**
-     * @test
-     * @dataProvider gridDataProvider
-     */
-    public function itCanGetFormattedResultData($data)
+    /** @test */
+    public function itCanGetFormattedResultData()
     {
 
         $columns = new ColumnCollection();
@@ -62,7 +67,18 @@ class GridResultTest extends \Tests\TestCase
         });
         $columns->add($column);
         $result = new GridResult($columns);
-        $result->setData($data);
+        $result->setData([
+            [
+                'name' => 'Andrew',
+                'email' => 'andrew@example.com',
+                'created_at' => '1920-05-20',
+            ],
+            [
+                'name' => 'Rachel',
+                'email' => 'rachel@example.com',
+                'created_at' => '1940-05-20',
+            ],
+        ]);
 
         $this->assertCount(2, $result->getRows());
         $this->assertEquals([
@@ -78,24 +94,24 @@ class GridResultTest extends \Tests\TestCase
         ], $result->getRows());
     }
 
-    public function gridDataProvider()
+    /** @test */
+    public function itHandlesFormattingMissingData()
     {
-        return [
+        $columns = new ColumnCollection();
+        $column = new Column('name', 'Name');
+        $column->withFormat(function ($value) {
+            return 'NAME.' . $value;
+        });
+        $columns->add($column);
+        $result = new GridResult($columns);
+        $result->setData([['name' => null]]);
+
+        $data = $result->getRows();
+        $this->assertEquals([
             [
-                [
-                    [
-                        'name' => 'Andrew',
-                        'email' => 'andrew@example.com',
-                        'created_at' => '1920-05-20',
-                    ],
-                    [
-                        'name' => 'Rachel',
-                        'email' => 'rachel@example.com',
-                        'created_at' => '1940-05-20',
-                    ],
-                ],
+                'name' => null,
             ]
-        ];
+        ], $data);
     }
 
 }

@@ -44,14 +44,14 @@ class GridResult
             return $this->columns->keyBy(function (Column $column) {
                 return $column->getKey();
             }, function (Column $column) use ($row) {
-                return $this->getValue($column, $row[$column->getField()] ?? null);
+                return $this->getValue($column, $row[$column->getField()]);
             });
         })->all();
     }
 
     private function getValue(Column $column, $value)
     {
-        if ($column->hasFormat()) {
+        if ($column->hasFormat() && !is_null($value)) {
             return $column->format($value);
         }
         return $value;
