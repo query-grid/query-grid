@@ -17,7 +17,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Willishq\\QueryGridTests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
 
@@ -30,6 +30,7 @@
     },
 
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit --no-logging",
+        "test-coverage": "vendor/bin/phpunit"
     }
 }

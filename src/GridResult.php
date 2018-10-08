@@ -2,46 +2,59 @@
 
 namespace Willishq\QueryGrid;
 
-use Willishq\QueryGrid\Contracts\PaginationData;
+use Closure;
+use Willishq\QueryGrid\Columns\Column;
+use Willishq\QueryGrid\Columns\ColumnCollection;
 
 class GridResult
 {
     /**
-     * @var PaginationData
-     */
-    private $paginationData;
-    /**
-     * @var array
-     */
-    private $items;
-    /**
      * @var ColumnCollection
      */
     private $columns;
+    /**
+     * @var RowCollection
+     */
+    private $rows;
 
-    public function __construct(PaginationData $paginationData, array $items, ColumnCollection $columns)
+    public function __construct(ColumnCollection $columns)
     {
-        $this->paginationData = $paginationData;
-        $this->items = $items;
         $this->columns = $columns;
+        $rows = new RowCollection();
     }
 
-    public function toArray()
+    /**
+     * @return ColumnCollection
+     */
+    public function getColumns(): ColumnCollection
     {
-        return [
-            'columns'    => $this->columns->toArray(),
-            'pagination' => $this->pagination()->toArray(),
-            'items'      => $this->items(),
-        ];
+        return $this->columns;
     }
 
-    public function items(): array
+    public function setData(array $rows)
     {
-        return $this->items;
+        $collection = new RowCollection();
+        $collection->populate($rows);
+        $this->rows = $collection;
     }
 
-    public function pagination(): PaginationData
+    public function getRows(): array
     {
-        return $this->paginationData;
+        return $this->rows->map(function (array $row) {
+            return $this->columns->keyBy(function (Column $column) {
+                return $column->getKey();
+            }, function (Column $column) use ($row) {
+                return $this->getValue($column, $row[$column->getField()] ?? null);
+            });
+        })->all();
     }
+
+    private function getValue(Column $column, $value)
+    {
+        if ($column->hasFormat()) {
+            return $column->format($value);
+        }
+        return $value;
+    }
+
 }
