@@ -113,5 +113,4 @@ class GridResultTest extends \Tests\TestCase
             ]
         ], $data);
     }
-
 }
