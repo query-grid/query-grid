@@ -9,7 +9,7 @@ use Willishq\QueryGrid\GridResult;
 class GridResultTest extends \Tests\TestCase
 {
     /** @test */
-    public function itCanGetTheGridColumns()
+    public function itGetsColumns()
     {
         $columns = new ColumnCollection();
         $result = new GridResult($columns);
@@ -20,7 +20,7 @@ class GridResultTest extends \Tests\TestCase
     }
 
     /** @test */
-    public function itCanGetTheResultData()
+    public function itGetsRows()
     {
         $columns = new ColumnCollection();
         $columns->add(new Column('name', 'Name'));
@@ -50,7 +50,7 @@ class GridResultTest extends \Tests\TestCase
     }
 
     /** @test */
-    public function itCanGetFormattedResultData()
+    public function itFormatsRows()
     {
 
         $columns = new ColumnCollection();
@@ -95,7 +95,7 @@ class GridResultTest extends \Tests\TestCase
     }
 
     /** @test */
-    public function itHandlesFormattingMissingData()
+    public function itHandlesMissingRows()
     {
         $columns = new ColumnCollection();
         $column = new Column('name', 'Name');

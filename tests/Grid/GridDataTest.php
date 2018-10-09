@@ -8,7 +8,7 @@ use Willishq\QueryGrid\GridResult;
 class GridDataTest extends TestCase
 {
     /** @test */
-    public function itCanCreateAnInstance()
+    public function itCanBeCreated()
     {
         $grid = $this->itHasAGridInstance();
 
@@ -17,7 +17,7 @@ class GridDataTest extends TestCase
     }
 
     /** @test */
-    public function itCanSetTheResource()
+    public function itSetsTheResource()
     {
         $grid = $this->itHasAGridInstance();
 
@@ -27,7 +27,7 @@ class GridDataTest extends TestCase
     }
 
     /** @test */
-    public function itReturnsAGridResponse()
+    public function itReturnsTheGridResponse()
     {
         $grid = $this->itHasAGridInstance();
 

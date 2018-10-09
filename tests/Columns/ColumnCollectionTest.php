@@ -10,14 +10,14 @@ use Willishq\QueryGrid\Columns\ColumnCollection;
 class ColumnCollectionTest extends TestCase
 {
     /** @test */
-    public function itExtendsTheCollectionClass()
+    public function itExtendsTheAbstractCollection()
     {
         $columnCollection = new ColumnCollection();
         $this->assertInstanceOf(CollectionAbstract::class, $columnCollection);
     }
 
     /** @test */
-    public function itCanAddAColumn()
+    public function itAddsAColumn()
     {
         $columnCollection = new ColumnCollection();
         $column = new Column('k', 'l');
@@ -28,7 +28,7 @@ class ColumnCollectionTest extends TestCase
         $this->assertSame($column, $columnCollection->last());
     }
     /** @test */
-    public function itCanAddMultipleColumns()
+    public function itAddsManyColumns()
     {
         $columnCollection = new ColumnCollection();
         $columnFirst = new Column('first', 'First');
@@ -47,7 +47,7 @@ class ColumnCollectionTest extends TestCase
      * @test
      * @expectedException \TypeError
      */
-    public function itCanNotAddNonColumns()
+    public function itDoesNotAddNonColumns()
     {
         $columnCollection = new ColumnCollection();
         $columnCollection->add(1);

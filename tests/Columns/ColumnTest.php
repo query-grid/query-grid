@@ -8,7 +8,7 @@ use Willishq\QueryGrid\Columns\Column;
 class ColumnTest extends TestCase
 {
     /** @test */
-    public function itCanCreateAnInstance()
+    public function itIsCreatable()
     {
         $column = new Column('key', 'label');
 
@@ -18,7 +18,7 @@ class ColumnTest extends TestCase
     }
 
     /** @test */
-    public function itCanChangeTheFieldMapping()
+    public function itChangesTheFromField()
     {
         $column = new Column('key', 'label');
         $response = $column->fromField('field');
@@ -30,7 +30,7 @@ class ColumnTest extends TestCase
     }
 
     /** @test */
-    public function itCanFormatValues()
+    public function itFormatsValues()
     {
         $column = new Column('key', 'label');
         $response = $column->withFormat(function ($value) {

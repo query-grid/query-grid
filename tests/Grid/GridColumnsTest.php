@@ -8,7 +8,7 @@ use Willishq\QueryGrid\Columns\ColumnCollection;
 class GridColumnsTest extends TestCase
 {
     /** @test */
-    public function itCanAddAColumn()
+    public function itAddsAColumn()
     {
         $grid = $this->itHasAGridInstance();
 
@@ -22,7 +22,7 @@ class GridColumnsTest extends TestCase
     }
 
     /** @test */
-    public function itCanAddManyColumns()
+    public function itAddsManyColumns()
     {
         $grid = $this->itHasAGridInstance();
 

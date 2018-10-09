@@ -7,7 +7,7 @@ use Willishq\QueryGrid\Collections\Collection;
 class CollectionTest extends TestCase
 {
     /** @test */
-    public function itCanCreateAnAccessibleCollection()
+    public function itIsAccessible()
     {
         $collection = new Collection();
         $collection->add(1);
@@ -28,7 +28,7 @@ class CollectionTest extends TestCase
      * @expectedException \Willishq\QueryGrid\Collections\CollectionException
      * @expectedExceptionMessage You can not change a collection value using that method.
      */
-    public function itCanNotSetOnACollection()
+    public function itBlocksSetting()
     {
         $collection = new Collection();
         $collection[0] = 1;
@@ -39,7 +39,7 @@ class CollectionTest extends TestCase
      * @expectedException \Willishq\QueryGrid\Collections\CollectionException
      * @expectedExceptionMessage You can not unset a collection value using that method.
      */
-    public function itCanNotUnsetOnACollection()
+    public function itBlocksUnsetting()
     {
         $collection = new Collection();
         unset($collection[0]);
@@ -47,7 +47,7 @@ class CollectionTest extends TestCase
 
 
     /** @test */
-    public function itCreatesACountableCollection()
+    public function itIsCountable()
     {
         $collection = new Collection();
         $this->assertCount(0, $collection);
@@ -58,7 +58,7 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function itCanGetAnOffset()
+    public function itRetrievesByOffset()
     {
         $collection = new Collection();
         $collection->add(1);
@@ -71,7 +71,7 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function itCanGetTheFirstElement()
+    public function itRetrievesFirstItem()
     {
         $collection = new Collection();
         $collection->add(1);
@@ -82,7 +82,7 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function itCanGetTheLastElement()
+    public function itRetrievesLastItem()
     {
         $collection = new Collection();
         $collection->add(1);
@@ -93,7 +93,7 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function itCanReturnANewCollectionOfMappedItems()
+    public function itIsImmutableAndMappable()
     {
         $collection = new Collection();
         $collection->add(1);
@@ -113,7 +113,7 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function itCanReturnAllItemsAsAnArray()
+    public function itReturnsAnArray()
     {
         $collection = new Collection();
         $collection->add(1);
@@ -124,7 +124,7 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function itCanFilterArrayValuesAndReturnANewCollection()
+    public function itIsImmutableAndFilterable()
     {
         $collection = new Collection();
         $collection->add(1);
@@ -145,7 +145,7 @@ class CollectionTest extends TestCase
     }
 
     /** @test */
-    public function itCanKeyResultsByCallable()
+    public function itKeysResultsByCallable()
     {
         $collection = new Collection();
         $collection->add(['k' => 'one', 'value' => 1]);
@@ -164,7 +164,7 @@ class CollectionTest extends TestCase
         $this->assertEquals(['k' => 'three', 'value' => 3], $keyed['three']);
     }
     /** @test */
-    public function itCanKeyResultsAndValuesByCallable()
+    public function itKeysResultsAndValuesByCallable()
     {
         $collection = new Collection();
         $collection->add(['k' => 'one', 'value' => 1]);

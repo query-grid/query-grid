@@ -7,7 +7,7 @@ use Willishq\QueryGrid\RowCollection;
 class RowCollectionTest extends TestCase
 {
     /** @test */
-    public function itCanBePopulated()
+    public function itIsPopulated()
     {
         $collection = new RowCollection();
         $data = [
