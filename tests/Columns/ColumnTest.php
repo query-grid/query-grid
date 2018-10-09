@@ -51,4 +51,17 @@ class ColumnTest extends TestCase
         $this->assertArrayHasKey(Filter::CONTAINS, $filters);
         $this->assertEquals($filter, $filters[Filter::CONTAINS]);
     }
+    /** @test */
+    public function itAddsManyFilters()
+    {
+        $column = new Column('k', 'l');
+        $filterContains = $column->addFilter(Filter::CONTAINS, 'Contains String');
+        $filterStarts = $column->addFilter(Filter::STARTS_WITH, 'Starts with');
+        $filters = $column->getFilters();
+
+        $this->assertArrayHasKey(Filter::CONTAINS, $filters);
+        $this->assertArrayHasKey(Filter::STARTS_WITH, $filters);
+        $this->assertEquals($filterContains, $filters[Filter::CONTAINS]);
+        $this->assertEquals($filterStarts, $filters[Filter::STARTS_WITH]);
+    }
 }
