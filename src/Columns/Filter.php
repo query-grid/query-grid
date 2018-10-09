@@ -1,6 +1,6 @@
 <?php
 
-namespace Willishq\QueryGrid;
+namespace Willishq\QueryGrid\Columns;
 
 class Filter
 {

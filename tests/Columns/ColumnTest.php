@@ -4,7 +4,7 @@ namespace Tests\Columns;
 
 use Tests\TestCase;
 use Willishq\QueryGrid\Columns\Column;
-use Willishq\QueryGrid\Filter;
+use Willishq\QueryGrid\Columns\Filter;
 
 class ColumnTest extends TestCase
 {

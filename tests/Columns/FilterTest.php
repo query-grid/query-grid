@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests;
+namespace Tests\Columns;
 
-use Willishq\QueryGrid\Filter;
+use Tests\TestCase;
+use Willishq\QueryGrid\Columns\Filter;
 
 class FilterTest extends TestCase
 {
@@ -35,7 +36,7 @@ class FilterTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Willishq\QueryGrid\FilterException
+     * @expectedException \Willishq\QueryGrid\Columns\FilterException
      * @expectedExceptionMessage Trying to set an unknown filter type: invalidFilter
      */
     public function itMustHaveAnExistingFilter()

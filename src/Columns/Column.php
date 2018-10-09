@@ -2,8 +2,6 @@
 
 namespace Willishq\QueryGrid\Columns;
 
-use Willishq\QueryGrid\Filter;
-
 class Column
 {
     private $key;
