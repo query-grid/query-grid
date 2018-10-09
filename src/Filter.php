@@ -21,9 +21,10 @@ class Filter
 
     public function __construct(string $type)
     {
-        if (in_array($type, self::getTypes())) {
-            $this->type = $type;
+        if (!in_array($type, self::getTypes())) {
+            throw FilterException::unknownFilterType($type);
         }
+        $this->type = $type;
     }
 
 

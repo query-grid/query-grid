@@ -33,6 +33,17 @@ class FilterTest extends TestCase
         $this->assertEquals(Filter::STARTS_WITH, $filter->getType());
     }
 
+    /**
+     * @test
+     * @expectedException \Willishq\QueryGrid\FilterException
+     * @expectedExceptionMessage Trying to set an unknown filter type: invalidFilter
+     */
+    public function itMustHaveAnExistingFilter()
+    {
+         new Filter('invalidFilter');
+
+    }
+
     /** @test */
     public function itAddsAnOption()
     {
