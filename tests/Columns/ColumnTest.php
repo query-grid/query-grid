@@ -41,6 +41,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('all_of', $column->format('of'));
         $this->assertSame($response, $column);
     }
+
     /** @test */
     public function itAddsAFilter()
     {
@@ -51,6 +52,7 @@ class ColumnTest extends TestCase
         $this->assertArrayHasKey(Filter::CONTAINS, $filters);
         $this->assertEquals($filter, $filters[Filter::CONTAINS]);
     }
+
     /** @test */
     public function itAddsManyFilters()
     {
@@ -63,5 +65,17 @@ class ColumnTest extends TestCase
         $this->assertArrayHasKey(Filter::STARTS_WITH, $filters);
         $this->assertEquals($filterContains, $filters[Filter::CONTAINS]);
         $this->assertEquals($filterStarts, $filters[Filter::STARTS_WITH]);
+    }
+
+    /**
+     * @test
+     * @expectedException \Willishq\QueryGrid\Columns\ColumnException
+     * @expectedExceptionMessage You can not add more than one filter of each type to a column.
+     */
+    public function itRejectsDuplicateFilterTypes()
+    {
+        $column = new Column('k', 'l');
+        $column->addFilter(Filter::CONTAINS, 'Contains String');
+        $column->addFilter(Filter::CONTAINS, 'Whoops');
     }
 }

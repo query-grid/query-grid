@@ -62,8 +62,11 @@ class Column
         return isset($this->formatter);
     }
 
-    public function addFilter(string $type, string $name = '')
+    public function addFilter(string $type, string $name = ''): Filter
     {
+        if (array_key_exists($type, $this->filters)) {
+            throw ColumnException::canNotAddFilterWithDuplicateType();
+        }
         $filter = new Filter($type);
         $filter->setName($name);
         $this->filters[$type] = $filter;
