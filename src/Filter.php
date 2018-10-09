@@ -4,22 +4,22 @@ namespace Willishq\QueryGrid;
 
 class Filter
 {
-    const STARTS_WITH = 0;
-    const ENDS_WITH = 1;
-    const CONTAINS = 2;
-    const EXACT = 3;
-    const LESS_THAN = 4;
-    const LESS_THAN_OR_EQUAL = 5;
-    const GREATER_THAN = 6;
-    const GREATER_THAN_OR_EQUAL = 7;
-    const MATCH_ONE_OPTION = 8;
-    const MATCH_MANY_OPTIONS = 9;
+    const STARTS_WITH = 'st';
+    const ENDS_WITH = 'enw';
+    const CONTAINS = 'con';
+    const EXACT = 'exa';
+    const LESS_THAN = 'lt';
+    const LESS_THAN_OR_EQUAL = 'lte';
+    const GREATER_THAN = 'gt';
+    const GREATER_THAN_OR_EQUAL = 'gte';
+    const MATCH_ONE_OPTION = 'm1';
+    const MATCH_MANY_OPTIONS = 'mn';
     /** @var int */
     private $type;
     private $options = [];
     private $name;
 
-    public function __construct(int $type)
+    public function __construct(string $type)
     {
         if (in_array($type, self::getTypes())) {
             $this->type = $type;

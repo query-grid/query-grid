@@ -11,7 +11,18 @@ class FilterTest extends TestCase
     {
         $types = Filter::getTypes();
 
-        $this->assertEquals([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], $types);
+        $this->assertEquals([
+            'st',
+            'enw',
+            'con',
+            'exa',
+            'lt',
+            'lte',
+            'gt',
+            'gte',
+            'm1',
+            'mn',
+        ], $types);
     }
 
     /** @test */
@@ -55,13 +66,12 @@ class FilterTest extends TestCase
         ], $filter->getOptions());
     }
 
-
     /** @test */
     public function itSetsAFilterName()
     {
         $filter = new Filter(Filter::CONTAINS);
-        $filter->setName('awesomeFilter');
+        $filter->setName('Awesome Filter');
 
-        $this->assertEquals('awesomeFilter', $filter->getName());
+        $this->assertEquals('Awesome Filter', $filter->getName());
     }
 }
