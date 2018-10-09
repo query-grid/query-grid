@@ -73,7 +73,7 @@ class FilterTest extends TestCase
             [
                 'value' => 'option-2',
                 'label' => 'Option 2',
-            ]
+            ],
         ], $filter->getOptions());
     }
 
@@ -84,5 +84,42 @@ class FilterTest extends TestCase
         $filter->setName('Awesome Filter');
 
         $this->assertEquals('Awesome Filter', $filter->getName());
+    }
+
+    /** @test */
+    public function itReturnsAnArray()
+    {
+        $filter = new Filter(Filter::CONTAINS);
+
+        $this->assertEquals([
+            'type' => Filter::CONTAINS,
+            'name' => '',
+        ], $filter->toArray());
+
+        $filter = new Filter(Filter::CONTAINS);
+        $filter->setName('Filter Name');
+        $this->assertEquals([
+            'type' => Filter::CONTAINS,
+            'name' => 'Filter Name',
+        ], $filter->toArray());
+
+
+        $filter = new Filter(Filter::MATCH_ONE_OPTION);
+        $filter->addOption('option-1', 'Option 1');
+        $filter->addOption('option-2', 'Option 2');
+        $this->assertEquals([
+            'type' => Filter::MATCH_ONE_OPTION,
+            'name' => '',
+            'options' => [
+                [
+                    'value' => 'option-1',
+                    'label' => 'Option 1',
+                ],
+                [
+                    'value' => 'option-2',
+                    'label' => 'Option 2',
+                ],
+            ],
+        ], $filter->toArray());
     }
 }

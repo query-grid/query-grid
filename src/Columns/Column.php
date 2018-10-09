@@ -74,6 +74,26 @@ class Column
         return $filter;
     }
 
+    public function toArray(): array
+    {
+        $filters = [];
+
+        foreach ($this->filters as $key => $filter) {
+            $filters[$key] = $filter->toArray();
+        }
+
+        $result =  [
+            'key' => $this->getKey(),
+            'label' => $this->getLabel(),
+        ];
+
+        if (!empty($filters)) {
+            $result['filters'] = $filters;
+        }
+
+        return $result;
+    }
+
     public function getFilters(): array
     {
         return $this->filters;

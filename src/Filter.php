@@ -17,7 +17,7 @@ class Filter
     /** @var int */
     private $type;
     private $options = [];
-    private $name;
+    private $name = '';
 
     public function __construct(string $type)
     {
@@ -27,6 +27,17 @@ class Filter
         $this->type = $type;
     }
 
+    public function toArray(): array
+    {
+        $result = [
+            'type' => $this->type,
+            'name' => $this->name,
+        ];
+        if (!empty($this->options)) {
+            $result['options'] = $this->options;
+        }
+        return $result;
+    }
 
     public static function getTypes(): array
     {

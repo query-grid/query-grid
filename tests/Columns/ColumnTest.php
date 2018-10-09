@@ -78,4 +78,39 @@ class ColumnTest extends TestCase
         $column->addFilter(Filter::CONTAINS, 'Contains String');
         $column->addFilter(Filter::CONTAINS, 'Whoops');
     }
+
+    /** @test */
+    public function itReturnsAnArray()
+    {
+        $column = new Column('k', 'l');
+
+        $this->assertEquals([
+            'key' => 'k',
+            'label' => 'l',
+        ], $column->toArray());
+
+        $column = new Column('k', 'l');
+        $filterContains = $column->addFilter(Filter::CONTAINS, 'Contains String');
+
+        $this->assertEquals([
+            'key' => 'k',
+            'label' => 'l',
+            'filters' => [
+                'k.' . Filter::CONTAINS => $filterContains->toArray(),
+            ],
+        ], $column->toArray());
+
+        $column = new Column('k', 'l');
+        $filterContains = $column->addFilter(Filter::CONTAINS, 'Contains String');
+        $filterStarts = $column->addFilter(Filter::STARTS_WITH, 'Starts with String');
+
+        $this->assertEquals([
+            'key' => 'k',
+            'label' => 'l',
+            'filters' => [
+                'k.' . Filter::CONTAINS => $filterContains->toArray(),
+                'k.' . Filter::STARTS_WITH => $filterStarts->toArray(),
+            ],
+        ], $column->toArray());
+    }
 }

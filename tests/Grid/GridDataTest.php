@@ -27,7 +27,7 @@ class GridDataTest extends TestCase
     }
 
     /** @test */
-    public function itReturnsTheGridResponse()
+    public function itReturnsTheGridResult()
     {
         $grid = $this->itHasAGridInstance();
 
