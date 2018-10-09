@@ -2,12 +2,15 @@
 
 namespace Willishq\QueryGrid\Columns;
 
+use Willishq\QueryGrid\Filter;
+
 class Column
 {
     private $key;
     private $label;
     private $field;
     private $formatter;
+    private $filters = [];
 
     public function __construct(string $key, string $label)
     {
@@ -59,4 +62,16 @@ class Column
         return isset($this->formatter);
     }
 
+    public function addFilter(string $type, string $name = '')
+    {
+        $filter = new Filter($type);
+        $filter->setName($name);
+        $this->filters[$type] = $filter;
+        return $filter;
+    }
+
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
 }

@@ -4,6 +4,7 @@ namespace Tests\Columns;
 
 use Tests\TestCase;
 use Willishq\QueryGrid\Columns\Column;
+use Willishq\QueryGrid\Filter;
 
 class ColumnTest extends TestCase
 {
@@ -39,5 +40,15 @@ class ColumnTest extends TestCase
         $this->assertTrue($column->hasFormat());
         $this->assertEquals('all_of', $column->format('of'));
         $this->assertSame($response, $column);
+    }
+    /** @test */
+    public function itAddsAFilter()
+    {
+        $column = new Column('k', 'l');
+        $filter = $column->addFilter(Filter::CONTAINS, 'Contains String');
+        $filters = $column->getFilters();
+
+        $this->assertArrayHasKey(Filter::CONTAINS, $filters);
+        $this->assertEquals($filter, $filters[Filter::CONTAINS]);
     }
 }
