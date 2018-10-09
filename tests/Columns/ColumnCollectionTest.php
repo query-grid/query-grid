@@ -67,12 +67,14 @@ class ColumnCollectionTest extends TestCase
                 'label' => 'First',
                 'sortable' => false,
                 'queryable' => false,
+                'filterable' => false,
             ],
             [
                 'key' => 'second',
                 'label' => 'Second',
                 'sortable' => false,
                 'queryable' => false,
+                'filterable' => false,
             ],
         ], $columnCollection->toArray());
     }

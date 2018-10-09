@@ -84,11 +84,12 @@ class Column
             $filters[$key] = $filter->toArray();
         }
 
-        $result =  [
+        $result = [
             'key' => $this->getKey(),
             'label' => $this->getLabel(),
             'sortable' => $this->isSortable(),
             'queryable' => $this->isQueryable(),
+            'filterable' => $this->isFilterable(),
         ];
 
         if (!empty($filters)) {
@@ -121,5 +122,10 @@ class Column
     public function isQueryable(): bool
     {
         return $this->queryable;
+    }
+
+    public function isFilterable(): bool
+    {
+        return !empty($this->filters);
     }
 }

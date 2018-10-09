@@ -104,6 +104,18 @@ class ColumnTest extends TestCase
     }
 
     /** @test */
+    public function itDetectsFilterable()
+    {
+        $column = new Column('k', 'l');
+
+        $this->assertFalse($column->isFilterable());
+
+        $column->addFilter(Filter::CONTAINS, 'Contains String');
+
+        $this->assertTrue($column->isFilterable());
+    }
+
+    /** @test */
     public function itReturnsAnArray()
     {
         $column = new Column('k', 'l');
@@ -113,6 +125,7 @@ class ColumnTest extends TestCase
             'label' => 'l',
             'sortable' => false,
             'queryable' => false,
+            'filterable' => false,
         ], $column->toArray());
 
         $column = new Column('k', 'l');
@@ -123,6 +136,7 @@ class ColumnTest extends TestCase
             'label' => 'l',
             'sortable' => true,
             'queryable' => false,
+            'filterable' => false,
         ], $column->toArray());
 
         $column = new Column('k', 'l');
@@ -133,6 +147,7 @@ class ColumnTest extends TestCase
             'label' => 'l',
             'sortable' => false,
             'queryable' => true,
+            'filterable' => false,
         ], $column->toArray());
 
         $column = new Column('k', 'l');
@@ -143,6 +158,7 @@ class ColumnTest extends TestCase
             'label' => 'l',
             'sortable' => false,
             'queryable' => false,
+            'filterable' => true,
             'filters' => [
                 'k.' . Filter::CONTAINS => $filterContains->toArray(),
             ],
@@ -157,6 +173,7 @@ class ColumnTest extends TestCase
             'label' => 'l',
             'sortable' => false,
             'queryable' => false,
+            'filterable' => true,
             'filters' => [
                 'k.' . Filter::CONTAINS => $filterContains->toArray(),
                 'k.' . Filter::STARTS_WITH => $filterStarts->toArray(),
