@@ -49,8 +49,8 @@ class ColumnTest extends TestCase
         $filter = $column->addFilter(Filter::CONTAINS, 'Contains String');
         $filters = $column->getFilters();
 
-        $this->assertArrayHasKey(Filter::CONTAINS, $filters);
-        $this->assertEquals($filter, $filters[Filter::CONTAINS]);
+        $this->assertArrayHasKey('k.' . Filter::CONTAINS, $filters);
+        $this->assertEquals($filter, $filters['k.' . Filter::CONTAINS]);
     }
 
     /** @test */
@@ -61,10 +61,10 @@ class ColumnTest extends TestCase
         $filterStarts = $column->addFilter(Filter::STARTS_WITH, 'Starts with');
         $filters = $column->getFilters();
 
-        $this->assertArrayHasKey(Filter::CONTAINS, $filters);
-        $this->assertArrayHasKey(Filter::STARTS_WITH, $filters);
-        $this->assertEquals($filterContains, $filters[Filter::CONTAINS]);
-        $this->assertEquals($filterStarts, $filters[Filter::STARTS_WITH]);
+        $this->assertArrayHasKey('k.' . Filter::CONTAINS, $filters);
+        $this->assertArrayHasKey('k.' . Filter::STARTS_WITH, $filters);
+        $this->assertEquals($filterContains, $filters['k.' . Filter::CONTAINS]);
+        $this->assertEquals($filterStarts, $filters['k.' . Filter::STARTS_WITH]);
     }
 
     /**

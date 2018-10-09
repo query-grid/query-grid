@@ -64,12 +64,13 @@ class Column
 
     public function addFilter(string $type, string $name = ''): Filter
     {
-        if (array_key_exists($type, $this->filters)) {
+        $key = $this->getKey() . '.' . $type;
+        if (array_key_exists($key, $this->filters)) {
             throw ColumnException::canNotAddFilterWithDuplicateType();
         }
         $filter = new Filter($type);
         $filter->setName($name);
-        $this->filters[$type] = $filter;
+        $this->filters[$key] = $filter;
         return $filter;
     }
 
