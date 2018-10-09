@@ -80,6 +80,30 @@ class ColumnTest extends TestCase
     }
 
     /** @test */
+    public function itSetsSortable()
+    {
+        $column = new Column('k', 'l');
+
+        $this->assertFalse($column->isSortable());
+
+        $column->sortable();
+
+        $this->assertTrue($column->isSortable());
+    }
+
+    /** @test */
+    public function itSetsQueryable()
+    {
+        $column = new Column('k', 'l');
+
+        $this->assertFalse($column->isQueryable());
+
+        $column->queryable();
+
+        $this->assertTrue($column->isQueryable());
+    }
+
+    /** @test */
     public function itReturnsAnArray()
     {
         $column = new Column('k', 'l');
@@ -87,6 +111,28 @@ class ColumnTest extends TestCase
         $this->assertEquals([
             'key' => 'k',
             'label' => 'l',
+            'sortable' => false,
+            'queryable' => false,
+        ], $column->toArray());
+
+        $column = new Column('k', 'l');
+        $column->sortable();
+
+        $this->assertEquals([
+            'key' => 'k',
+            'label' => 'l',
+            'sortable' => true,
+            'queryable' => false,
+        ], $column->toArray());
+
+        $column = new Column('k', 'l');
+        $column->queryable();
+
+        $this->assertEquals([
+            'key' => 'k',
+            'label' => 'l',
+            'sortable' => false,
+            'queryable' => true,
         ], $column->toArray());
 
         $column = new Column('k', 'l');
@@ -95,6 +141,8 @@ class ColumnTest extends TestCase
         $this->assertEquals([
             'key' => 'k',
             'label' => 'l',
+            'sortable' => false,
+            'queryable' => false,
             'filters' => [
                 'k.' . Filter::CONTAINS => $filterContains->toArray(),
             ],
@@ -107,6 +155,8 @@ class ColumnTest extends TestCase
         $this->assertEquals([
             'key' => 'k',
             'label' => 'l',
+            'sortable' => false,
+            'queryable' => false,
             'filters' => [
                 'k.' . Filter::CONTAINS => $filterContains->toArray(),
                 'k.' . Filter::STARTS_WITH => $filterStarts->toArray(),

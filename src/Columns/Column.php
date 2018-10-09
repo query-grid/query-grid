@@ -11,6 +11,8 @@ class Column
     private $field;
     private $formatter;
     private $filters = [];
+    private $sortable = false;
+    private $queryable = false;
 
     public function __construct(string $key, string $label)
     {
@@ -85,6 +87,8 @@ class Column
         $result =  [
             'key' => $this->getKey(),
             'label' => $this->getLabel(),
+            'sortable' => $this->isSortable(),
+            'queryable' => $this->isQueryable(),
         ];
 
         if (!empty($filters)) {
@@ -97,5 +101,25 @@ class Column
     public function getFilters(): array
     {
         return $this->filters;
+    }
+
+    public function sortable()
+    {
+        $this->sortable = true;
+    }
+
+    public function isSortable(): bool
+    {
+        return $this->sortable;
+    }
+
+    public function queryable()
+    {
+        $this->queryable = true;
+    }
+
+    public function isQueryable(): bool
+    {
+        return $this->queryable;
     }
 }

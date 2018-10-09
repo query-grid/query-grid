@@ -27,6 +27,7 @@ class ColumnCollectionTest extends TestCase
         $this->assertSame($column, $columnCollection->first());
         $this->assertSame($column, $columnCollection->last());
     }
+
     /** @test */
     public function itAddsManyColumns()
     {
@@ -53,5 +54,26 @@ class ColumnCollectionTest extends TestCase
         $columnCollection->add(1);
     }
 
+    /** @test */
+    public function itConvertsToAnArray()
+    {
+        $columnCollection = new ColumnCollection();
+        $columnCollection->add(new Column('first', 'First'));
+        $columnCollection->add(new Column('second', 'Second'));
 
+        $this->assertEquals([
+            [
+                'key' => 'first',
+                'label' => 'First',
+                'sortable' => false,
+                'queryable' => false,
+            ],
+            [
+                'key' => 'second',
+                'label' => 'Second',
+                'sortable' => false,
+                'queryable' => false,
+            ],
+        ], $columnCollection->toArray());
+    }
 }

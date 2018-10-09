@@ -21,4 +21,11 @@ class ColumnCollection extends CollectionAbstract
     {
         return $this->offsetGet(0);
     }
+
+    public function toArray(): array
+    {
+        return $this->map(function (Column $column) {
+            return $column->toArray();
+        })->all();
+    }
 }
