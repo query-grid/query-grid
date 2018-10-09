@@ -14,9 +14,10 @@ class Filter
     const GREATER_THAN_OR_EQUAL = 7;
     const MATCH_ONE_OPTION = 8;
     const MATCH_MANY_OPTIONS = 9;
-    /** @var int  */
+    /** @var int */
     private $type;
     private $options = [];
+    private $name;
 
     public function __construct(int $type)
     {
@@ -47,14 +48,24 @@ class Filter
         return $this->type;
     }
 
-    public function addOption(string $key, string $value = null)
+    public function addOption(string $value, string $label = null)
     {
-        $value = $value ?? $key;
-        $this->options[] = compact('key', 'value');
+        $label = $label ?? $value;
+        $this->options[] = compact('value', 'label');
     }
 
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    public function setName(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

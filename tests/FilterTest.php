@@ -30,8 +30,8 @@ class FilterTest extends TestCase
 
         $this->assertEquals([
             [
-                'key' => 'option',
-                'value' => 'Option',
+                'value' => 'option',
+                'label' => 'Option',
             ],
         ], $filter->getOptions());
     }
@@ -45,13 +45,23 @@ class FilterTest extends TestCase
 
         $this->assertEquals([
             [
-                'key' => 'option-1',
-                'value' => 'Option 1',
+                'value' => 'option-1',
+                'label' => 'Option 1',
             ],
             [
-                'key' => 'option-2',
-                'value' => 'Option 2',
+                'value' => 'option-2',
+                'label' => 'Option 2',
             ]
         ], $filter->getOptions());
+    }
+
+
+    /** @test */
+    public function itSetsAFilterName()
+    {
+        $filter = new Filter(Filter::CONTAINS);
+        $filter->setName('awesomeFilter');
+
+        $this->assertEquals('awesomeFilter', $filter->getName());
     }
 }
