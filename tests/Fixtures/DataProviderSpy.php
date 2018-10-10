@@ -6,7 +6,6 @@ use Willishq\QueryGrid\Contracts\DataProvider;
 
 class DataProviderSpy implements DataProvider
 {
-
     private $resource;
 
     public $values = [];
