@@ -70,7 +70,7 @@ class ColumnTest extends TestCase
     /**
      * @test
      * @expectedException \Willishq\QueryGrid\Columns\ColumnException
-     * @expectedExceptionMessage You can not add more than one filter of each type to a column.
+     * @expectedExceptionMessage You can only add one of each filter type to a column.
      */
     public function itRejectsDuplicateFilterTypes()
     {
