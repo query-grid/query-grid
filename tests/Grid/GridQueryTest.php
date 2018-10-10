@@ -90,7 +90,6 @@ class GridQueryTest extends TestCase
     /** @test */
     public function iSetsAQuery()
     {
-
         $grid = $this->itHasAGridInstance();
 
         $grid->addColumn('name', 'Name')->queryable();
