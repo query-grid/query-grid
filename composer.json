@@ -30,11 +30,13 @@
     "test-coverage": [
       "vendor/bin/phpstan analyse src --level=7",
       "vendor/bin/phpcs --standard=PSR2 src",
+      "vendor/bin/phpcs --standard=PSR2 tests",
       "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.clover"
     ],
     "test": [
       "vendor/bin/phpstan analyse src --level=7",
-      "vendor/bin/phpcs --standard=PSR2 src",
+      "vendor/bin/phpcbf --standard=PSR2 src",
+      "vendor/bin/phpcbf --standard=PSR2 tests",
       "vendor/bin/phpunit --no-logging"
     ]
   }
