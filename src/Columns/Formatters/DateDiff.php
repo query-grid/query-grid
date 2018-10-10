@@ -14,34 +14,33 @@ class DateDiff
      * @var string
      */
     private $format;
-    /** @var \DateTime */
-    private $fromDate;
+    /** @var string */
+    private $from;
 
     public function __construct(string $dateFormat, string $format)
     {
         $this->dateFormat = $dateFormat;
-        $this->fromDate = new \DateTime();
         $this->format = $format;
     }
 
     public function withFromDate(string $date): DateDiff
     {
-        $this->fromDate = $this->createDate($date);
+        $this->from = $date;
         return $this;
     }
 
     public function __invoke(string $date): string
     {
-        if (! $this->fromDate instanceof DateTime) {
+        $from = $this->createDate($this->from);
+        if ($from === false) {
             return '';
         }
 
         $to = $this->createDate($date);
-
-        if (! $to instanceof DateTime) {
+        if ($to === false) {
             return '';
         }
-        return $this->fromDate->diff($to)->format($this->format);
+        return $from->diff($to)->format($this->format);
     }
 
     protected function createDate(string $date)
