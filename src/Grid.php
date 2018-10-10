@@ -66,7 +66,7 @@ class Grid
     {
         $result = new GridResult($this->columns);
 
-        $result->setData($this->dataProvider->get());
+        $result->setRows($this->dataProvider->get());
 
         return $result;
     }

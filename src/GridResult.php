@@ -31,7 +31,7 @@ class GridResult
         return $this->columns;
     }
 
-    public function setData(array $rows)
+    public function setRows(array $rows)
     {
         $this->rows->populate($rows);
     }

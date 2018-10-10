@@ -25,7 +25,7 @@ class GridResultTest extends \Tests\TestCase
         $columns = new ColumnCollection();
         $columns->add(new Column('name', 'Name'));
         $result = new GridResult($columns);
-        $result->setData([
+        $result->setRows([
             [
                 'name' => 'Andrew',
                 'email' => 'andrew@example.com',
@@ -67,7 +67,7 @@ class GridResultTest extends \Tests\TestCase
         });
         $columns->add($column);
         $result = new GridResult($columns);
-        $result->setData([
+        $result->setRows([
             [
                 'name' => 'Andrew',
                 'email' => 'andrew@example.com',
@@ -104,7 +104,7 @@ class GridResultTest extends \Tests\TestCase
         });
         $columns->add($column);
         $result = new GridResult($columns);
-        $result->setData([['name' => null]]);
+        $result->setRows([['name' => null]]);
 
         $data = $result->getRows();
         $this->assertEquals([
