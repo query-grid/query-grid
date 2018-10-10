@@ -2,7 +2,7 @@
 
 namespace Willishq\QueryGrid\Columns;
 
-use Closure;
+use Willishq\QueryGrid\Contracts\Collection as CollectionContract;
 use Willishq\QueryGrid\Collections\CollectionAbstract;
 
 class ColumnCollection extends CollectionAbstract
@@ -36,5 +36,12 @@ class ColumnCollection extends CollectionAbstract
             $filters = array_merge($filters, $item->getFilters());
         }
         return $filters;
+    }
+
+    public function getQueryableColumns(): CollectionContract
+    {
+        return $this->filter(function (Column $column) {
+            return $column->isQueryable();
+        });
     }
 }

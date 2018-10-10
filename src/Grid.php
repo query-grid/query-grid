@@ -14,19 +14,13 @@ class Grid
      */
     private $dataProvider;
     /**
-     * @var array
-     */
-    private $queryParams;
-    /**
      * @var ColumnCollection
      */
     private $columns;
 
-    public function __construct(DataProvider $dataProvider, array $queryParams = [])
+    public function __construct(DataProvider $dataProvider)
     {
         $this->dataProvider = $dataProvider;
-        $this->queryParams = $queryParams;
-        $this->appliedFilters = [];
         $this->columns = new ColumnCollection();
     }
 
@@ -36,14 +30,6 @@ class Grid
     public function getDataProvider(): DataProvider
     {
         return $this->dataProvider;
-    }
-
-    /**
-     * @return array
-     */
-    public function getQueryParams(): array
-    {
-        return $this->queryParams;
     }
 
     public function addColumn(string $key, string $label): Column
@@ -63,11 +49,16 @@ class Grid
         $this->dataProvider->setResource($resource);
     }
 
-    public function getResult(): GridResult
+    public function getResult($params = []): GridResult
     {
-        if (array_key_exists('filters', $this->queryParams)) {
-            $this->parseFilters();
+        if (array_key_exists('filters', $params)) {
+            $this->setFilters($params['filters']);
         }
+
+        if (array_key_exists('query', $params)) {
+            $this->setQuery($params['query']);
+        }
+
         $result = new GridResult($this->columns);
 
         $result->setRows($this->dataProvider->get());
@@ -75,26 +66,35 @@ class Grid
         return $result;
     }
 
-    private function parseFilters()
+    private function setFilters($filters)
     {
-        $filters = [];
+        $newFilters = [];
         /** @var Filter[] $allFilters */
         $allFilters = $this->columns->getAllFilters();
-        foreach ($this->queryParams['filters'] as $key => $value) {
+        foreach ($filters as $key => $value) {
             if (!array_key_exists($key, $allFilters)) {
                 continue;
             }
             $filter = $allFilters[$key];
 
-            if (!array_key_exists($filter->getField(), $filters)) {
-                $filters[$filter->getField()] = [];
+            if (!array_key_exists($filter->getField(), $newFilters)) {
+                $newFilters[$filter->getField()] = [];
             }
 
-            $filters[$filter->getField()][] = [
+            $newFilters[$filter->getField()][] = [
                 'type' => $filter->getType(),
                 'value' => $value,
             ];
         }
-        $this->dataProvider->setFilters($filters);
+        $this->dataProvider->setFilters($newFilters);
+    }
+
+    private function setQuery($query)
+    {
+        $columns = $this->columns->getQueryableColumns()
+            ->map(function (Column $column) {
+                return $column->getField();
+            })->unique();
+        $this->dataProvider->setQuery(new Query($query, $columns->all()));
     }
 }

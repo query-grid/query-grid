@@ -102,4 +102,25 @@ class ColumnCollectionTest extends TestCase
             'birthday.' . Filter::LESS_THAN => $filterBirthdayLessThan
         ], $columnCollection->getAllFilters());
     }
+
+    /** @test */
+    public function itGetsAllQueryableFields()
+    {
+        $columnCollection = new ColumnCollection();
+
+        $columnName = new Column('name', 'Name');
+        $columnName->queryable();
+        $columnBirthday = new Column('birthday', 'Date of Birth');
+        $columnAbout = new Column('about', 'about');
+        $columnAbout->queryable();
+
+        $columnCollection->add($columnName);
+        $columnCollection->add($columnBirthday);
+        $columnCollection->add($columnAbout);
+
+        $this->assertEquals([
+            $columnName,
+            $columnAbout,
+        ], $columnCollection->getQueryableColumns()->all());
+    }
 }

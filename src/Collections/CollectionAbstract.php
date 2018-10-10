@@ -2,6 +2,7 @@
 
 namespace Willishq\QueryGrid\Collections;
 
+use Willishq\QueryGrid\Contracts\Arrayable;
 use Willishq\QueryGrid\Contracts\Collection as CollectionContract;
 
 use Closure;
@@ -56,6 +57,13 @@ abstract class CollectionAbstract implements CollectionContract
         return $items;
     }
 
+    public function unique(): CollectionContract
+    {
+        $collection = new static();
+        $collection->fill(array_values(array_unique($this->items->getArrayCopy())));
+        return $collection;
+    }
+
     public function first()
     {
         return $this->offsetGet(0);
@@ -94,5 +102,12 @@ abstract class CollectionAbstract implements CollectionContract
     public function count()
     {
         return $this->items->count();
+    }
+
+    public function toArray(): array
+    {
+        return $this->map(function ($item) {
+            return ($item instanceof Arrayable) ? $item->toArray() : $item;
+        })->all();
     }
 }

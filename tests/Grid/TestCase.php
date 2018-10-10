@@ -23,8 +23,8 @@ class TestCase extends BaseTestCase
      * @param array $queryParams
      * @return Grid
      */
-    protected function itHasAGridInstance(array $queryParams = []): Grid
+    protected function itHasAGridInstance(): Grid
     {
-        return new Grid($this->dataProvider, $queryParams);
+        return new Grid($this->dataProvider);
     }
 }

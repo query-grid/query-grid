@@ -4,11 +4,13 @@ namespace Willishq\QueryGrid\Contracts;
 
 use Closure;
 
-interface Collection extends \ArrayAccess, \Countable
+interface Collection extends \ArrayAccess, \Countable, Arrayable
 {
     public function map(Closure $callable): Collection;
 
     public function filter(Closure $callable): Collection;
+
+    public function unique(): Collection;
 
     public function all(): array;
 

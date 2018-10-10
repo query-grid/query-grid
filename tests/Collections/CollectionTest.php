@@ -164,6 +164,7 @@ class CollectionTest extends TestCase
         $this->assertEquals(['k' => 'two', 'value' => 2], $keyed['two']);
         $this->assertEquals(['k' => 'three', 'value' => 3], $keyed['three']);
     }
+
     /** @test */
     public function itKeysResultsAndValuesByCallable()
     {
@@ -184,5 +185,32 @@ class CollectionTest extends TestCase
         $this->assertEquals(1, $keyed['one']);
         $this->assertEquals(2, $keyed['two']);
         $this->assertEquals(3, $keyed['three']);
+    }
+
+    /** @test */
+    public function itIsArrayable()
+    {
+        $collection = new Collection();
+        $collection->add('a');
+        $collection->add('b');
+        $collection->add([
+            'c' => 'd',
+        ]);
+
+        $this->assertEquals(['a', 'b', ['c' => 'd',]], $collection->toArray());
+    }
+
+    /** @test */
+    public function itFiltersUnique()
+    {
+        $collection = new Collection();
+        $collection->add('a');
+        $collection->add('b');
+        $collection->add('b');
+        $collection->add('c');
+        $collection->add('c');
+        $collection->add('c');
+
+        $this->assertEquals(['a', 'b', 'c'], $collection->unique()->toArray());
     }
 }

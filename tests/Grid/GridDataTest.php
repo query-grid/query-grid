@@ -15,7 +15,6 @@ class GridDataTest extends TestCase
         $grid = $this->itHasAGridInstance();
 
         $this->assertSame($this->dataProvider, $grid->getDataProvider());
-        $this->assertEmpty($grid->getQueryParams());
     }
 
     /** @test */

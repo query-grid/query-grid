@@ -3,6 +3,7 @@
 namespace Tests\Fixtures;
 
 use Willishq\QueryGrid\Contracts\DataProvider;
+use Willishq\QueryGrid\Query;
 
 class DataProviderSpy implements DataProvider
 {
@@ -10,6 +11,7 @@ class DataProviderSpy implements DataProvider
 
     public $values = [];
     private $filters = [];
+    private $query;
 
     public function getResource(): string
     {
@@ -39,5 +41,15 @@ class DataProviderSpy implements DataProvider
     public function getFilters()
     {
         return $this->filters;
+    }
+
+    public function setQuery(Query $query)
+    {
+        $this->query = $query;
+    }
+
+    public function getQuery(): ?Query
+    {
+        return $this->query;
     }
 }
