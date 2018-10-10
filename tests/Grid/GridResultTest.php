@@ -52,7 +52,6 @@ class GridResultTest extends \Tests\TestCase
     /** @test */
     public function itFormatsRows()
     {
-
         $columns = new ColumnCollection();
         $column = new Column('name', 'Name');
         $column->withFormat(function ($value) {

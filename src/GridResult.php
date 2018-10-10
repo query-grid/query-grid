@@ -54,5 +54,4 @@ class GridResult
         }
         return $value;
     }
-
 }

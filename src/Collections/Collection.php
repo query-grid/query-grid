@@ -23,5 +23,4 @@ class Collection extends CollectionAbstract
     {
         return $this->offsetGet($this->count() - 1);
     }
-
 }
