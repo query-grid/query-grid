@@ -6,6 +6,6 @@ class ColumnException extends \RuntimeException
 {
     public static function canNotAddFilterWithDuplicateType()
     {
-        return new static("You can not add more than one filter of each type to a column.");
+        return new static("You can only add one of each filter type to a column.");
     }
 }

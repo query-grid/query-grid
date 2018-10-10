@@ -26,7 +26,7 @@ class CollectionTest extends TestCase
     /**
      * @test
      * @expectedException \Willishq\QueryGrid\Collections\CollectionException
-     * @expectedExceptionMessage You can not change a collection value using that method.
+     * @expectedExceptionMessage You can not change a collection value that way.
      */
     public function itBlocksSetting()
     {
@@ -37,7 +37,7 @@ class CollectionTest extends TestCase
     /**
      * @test
      * @expectedException \Willishq\QueryGrid\Collections\CollectionException
-     * @expectedExceptionMessage You can not unset a collection value using that method.
+     * @expectedExceptionMessage You can not unset a collection value that way.
      */
     public function itBlocksUnsetting()
     {

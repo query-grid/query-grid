@@ -2,9 +2,11 @@
 
 namespace Willishq\QueryGrid\Collections;
 
+use Willishq\QueryGrid\Contracts\Collection as CollectionContract;
+
 use Closure;
 
-abstract class CollectionAbstract implements \ArrayAccess, \Countable
+abstract class CollectionAbstract implements CollectionContract
 {
     protected $items;
 
@@ -18,14 +20,14 @@ abstract class CollectionAbstract implements \ArrayAccess, \Countable
         $this->items = new \ArrayIterator($items);
     }
 
-    public function map(callable $callable): CollectionAbstract
+    public function map(callable $callable): CollectionContract
     {
-        $collection = new Collection();
+        $collection = new static();
         $collection->fill(array_map($callable, $this->all()));
         return $collection;
     }
 
-    public function filter(callable $callable): CollectionAbstract
+    public function filter(callable $callable): CollectionContract
     {
         $collection = new static;
         $collection->fill(array_filter($this->all(), $callable));
@@ -37,14 +39,25 @@ abstract class CollectionAbstract implements \ArrayAccess, \Countable
         return $this->items->getArrayCopy();
     }
 
-    public function keyBy(Closure $keyCallable, Closure $valueCallable = null): array
+    public function keyBy(Closure $key, Closure $value = null): array
     {
         $items = [];
         foreach ($this->items as $item) {
-            $items[$keyCallable($item)] = is_null($valueCallable) ? $item : $valueCallable($item);
+            $itemValue = is_null($value) ? $item : $value($item);
+            $items[$key($item)] = $itemValue;
         }
 
         return $items;
+    }
+
+    public function first()
+    {
+        return $this->offsetGet(0);
+    }
+
+    public function last()
+    {
+        return $this->offsetGet($this->count() - 1);
     }
 
     protected function append($value)

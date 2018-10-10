@@ -13,14 +13,4 @@ class Collection extends CollectionAbstract
     {
         return $this->offsetGet($offset);
     }
-
-    public function first()
-    {
-        return $this->offsetGet(0);
-    }
-
-    public function last()
-    {
-        return $this->offsetGet($this->count() - 1);
-    }
 }
