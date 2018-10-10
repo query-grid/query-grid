@@ -106,6 +106,5 @@ class GridQueryTest extends TestCase
 
         $this->assertEquals('and', $query->getQuery());
         $this->assertEquals(['name', 'about'], $query->getFields());
-
     }
 }

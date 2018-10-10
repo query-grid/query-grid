@@ -28,5 +28,4 @@ class PaginationDataTest extends TestCase
         $this->assertEquals(null, $paginationData->getTotalItems());
         $this->assertEquals(null, $paginationData->getLastPage());
     }
-
 }
