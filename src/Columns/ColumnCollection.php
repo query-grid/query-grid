@@ -6,7 +6,6 @@ use Willishq\QueryGrid\Collections\CollectionAbstract;
 
 class ColumnCollection extends CollectionAbstract
 {
-
     public function add(Column $column)
     {
         $this->append($column);

@@ -23,7 +23,6 @@ class Grid
 
     public function __construct(DataProvider $dataProvider, array $queryParams = [])
     {
-
         $this->dataProvider = $dataProvider;
         $this->queryParams = $queryParams;
         $this->columns = new ColumnCollection();
@@ -70,5 +69,4 @@ class Grid
 
         return $result;
     }
-
 }

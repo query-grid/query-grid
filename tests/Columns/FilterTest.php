@@ -41,8 +41,7 @@ class FilterTest extends TestCase
      */
     public function itMustHaveAnExistingFilter()
     {
-         new Filter('invalidFilter');
-
+        new Filter('invalidFilter');
     }
 
     /** @test */
