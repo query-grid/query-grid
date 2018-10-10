@@ -4,6 +4,7 @@ namespace Willishq\QueryGrid;
 
 use Willishq\QueryGrid\Columns\Column;
 use Willishq\QueryGrid\Columns\ColumnCollection;
+use Willishq\QueryGrid\Columns\Filter;
 use Willishq\QueryGrid\Contracts\DataProvider;
 
 class Grid
@@ -25,6 +26,7 @@ class Grid
     {
         $this->dataProvider = $dataProvider;
         $this->queryParams = $queryParams;
+        $this->appliedFilters = [];
         $this->columns = new ColumnCollection();
     }
 
@@ -63,10 +65,36 @@ class Grid
 
     public function getResult(): GridResult
     {
+        if (array_key_exists('filters', $this->queryParams)) {
+            $this->parseFilters();
+        }
         $result = new GridResult($this->columns);
 
         $result->setRows($this->dataProvider->get());
 
         return $result;
+    }
+
+    private function parseFilters()
+    {
+        $filters = [];
+        /** @var Filter[] $allFilters */
+        $allFilters = $this->columns->getAllFilters();
+        foreach ($this->queryParams['filters'] as $key => $value) {
+            if (!array_key_exists($key, $allFilters)) {
+                continue;
+            }
+            $filter = $allFilters[$key];
+
+            if (!array_key_exists($filter->getField(), $filters)) {
+                $filters[$filter->getField()] = [];
+            }
+
+            $filters[$filter->getField()][] = [
+                'type' => $filter->getType(),
+                'value' => $value,
+            ];
+        }
+        $this->dataProvider->setFilters($filters);
     }
 }

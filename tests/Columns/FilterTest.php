@@ -87,6 +87,15 @@ class FilterTest extends TestCase
     }
 
     /** @test */
+    public function itSetsAFilterField()
+    {
+        $filter = new Filter(Filter::CONTAINS);
+        $filter->setField('field');
+
+        $this->assertEquals('field', $filter->getField());
+    }
+
+    /** @test */
     public function itReturnsAnArray()
     {
         $filter = new Filter(Filter::CONTAINS);

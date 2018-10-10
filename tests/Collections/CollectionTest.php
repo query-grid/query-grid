@@ -141,8 +141,8 @@ class CollectionTest extends TestCase
         $this->assertEquals(1, $collection->get(0));
         $this->assertEquals(2, $collection->get(1));
         $this->assertEquals(3, $collection->get(2));
-        $this->assertEquals(2, $filtered->get(1));
-        $this->assertEquals(3, $filtered->get(2));
+        $this->assertEquals(2, $filtered->get(0));
+        $this->assertEquals(3, $filtered->get(1));
     }
 
     /** @test */

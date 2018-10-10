@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Willishq\QueryGrid\Collections\CollectionAbstract;
 use Willishq\QueryGrid\Columns\Column;
 use Willishq\QueryGrid\Columns\ColumnCollection;
+use Willishq\QueryGrid\Columns\Filter;
 
 class ColumnCollectionTest extends TestCase
 {
@@ -77,5 +78,28 @@ class ColumnCollectionTest extends TestCase
                 'filterable' => false,
             ],
         ], $columnCollection->toArray());
+    }
+
+    /** @test */
+    public function itGetsAllFilters()
+    {
+        $columnCollection = new ColumnCollection();
+
+        $columnName = new Column('name', 'Name');
+        $filterNameContains = $columnName->addFilter(Filter::CONTAINS);
+
+        $columnBirthday = new Column('birthday', 'Date of Birth');
+        $columnBirthday->fromField('dob');
+        $filterBirthdayGreaterThan = $columnBirthday->addFilter(Filter::GREATER_THAN);
+        $filterBirthdayLessThan = $columnBirthday->addFilter(Filter::LESS_THAN);
+
+        $columnCollection->add($columnName);
+        $columnCollection->add($columnBirthday);
+
+        $this->assertEquals([
+            'name.' . Filter::CONTAINS => $filterNameContains,
+            'birthday.' . Filter::GREATER_THAN => $filterBirthdayGreaterThan,
+            'birthday.' . Filter::LESS_THAN => $filterBirthdayLessThan
+        ], $columnCollection->getAllFilters());
     }
 }

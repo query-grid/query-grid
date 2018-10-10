@@ -32,6 +32,9 @@ class Column
     public function fromField(string $field): self
     {
         $this->field = $field;
+        array_walk($this->filters, function (Filter $filter) {
+            $filter->setField($this->field);
+        });
         return $this;
     }
 
@@ -64,6 +67,7 @@ class Column
         }
         $filter = new Filter($type);
         $filter->setName($name);
+        $filter->setField($this->field);
         $this->filters[$key] = $filter;
         return $filter;
     }

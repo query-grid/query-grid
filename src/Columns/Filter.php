@@ -18,6 +18,7 @@ class Filter
     private $type;
     private $options = [];
     private $name = '';
+    private $field;
 
     public function __construct(string $type)
     {
@@ -79,5 +80,15 @@ class Filter
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setField(string $field)
+    {
+        $this->field = $field;
+    }
+
+    public function getField(): string
+    {
+        return $this->field;
     }
 }

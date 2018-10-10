@@ -6,9 +6,9 @@ use Closure;
 
 interface Collection extends \ArrayAccess, \Countable
 {
-    public function map(callable $callable): Collection;
+    public function map(Closure $callable): Collection;
 
-    public function filter(callable $callable): Collection;
+    public function filter(Closure $callable): Collection;
 
     public function all(): array;
 

@@ -9,6 +9,7 @@ class DataProviderSpy implements DataProvider
     private $resource;
 
     public $values = [];
+    private $filters = [];
 
     public function getResource(): string
     {
@@ -28,5 +29,15 @@ class DataProviderSpy implements DataProvider
     public function get(): array
     {
         return $this->values;
+    }
+
+    public function setFilters(array $filters)
+    {
+        $this->filters = $filters;
+    }
+
+    public function getFilters()
+    {
+        return $this->filters;
     }
 }

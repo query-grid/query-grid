@@ -26,17 +26,17 @@ abstract class CollectionAbstract implements CollectionContract
         return $this->offsetGet($offset);
     }
 
-    public function map(callable $callable): CollectionContract
+    public function map(Closure $callable): CollectionContract
     {
         $collection = new static();
         $collection->fill(array_map($callable, $this->all()));
         return $collection;
     }
 
-    public function filter(callable $callable): CollectionContract
+    public function filter(Closure $callable): CollectionContract
     {
         $collection = new static;
-        $collection->fill(array_filter($this->all(), $callable));
+        $collection->fill(array_values(array_filter($this->all(), $callable)));
         return $collection;
     }
 

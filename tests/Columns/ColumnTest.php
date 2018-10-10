@@ -65,6 +65,13 @@ class ColumnTest extends TestCase
         $this->assertArrayHasKey('k.' . Filter::STARTS_WITH, $filters);
         $this->assertEquals($filterContains, $filters['k.' . Filter::CONTAINS]);
         $this->assertEquals($filterStarts, $filters['k.' . Filter::STARTS_WITH]);
+        $this->assertEquals('k', $filterContains->getField());
+        $this->assertEquals('k', $filterStarts->getField());
+
+        $column->fromField('other');
+
+        $this->assertEquals('other', $filterContains->getField());
+        $this->assertEquals('other', $filterStarts->getField());
     }
 
     /**
