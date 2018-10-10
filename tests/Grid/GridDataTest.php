@@ -3,6 +3,8 @@
 namespace Tests\Grid;
 
 use DateTime;
+use Willishq\QueryGrid\Columns\Formatters\Date;
+use Willishq\QueryGrid\Columns\Formatters\DateDiff;
 use Willishq\QueryGrid\GridResult;
 
 class GridDataTest extends TestCase
@@ -46,18 +48,11 @@ class GridDataTest extends TestCase
 
         $grid->addColumn('dob', 'Birthday')
             ->fromField('birthday')
-            ->withFormat(function ($value) {
-                return DateTime::createFromFormat('Y-m-d', $value)
-                    ->format('d/m/Y');
-            });
+            ->withFormat(new Date('Y-m-d', 'd/m/Y'));
 
         $grid->addColumn('age', 'Age')
             ->fromField('birthday')
-            ->withFormat(function ($value) {
-                return DateTime::createFromFormat('Y-m-d', $value)
-                    ->diff(DateTime::createFromFormat('Y-m-d', '2018-01-01'))
-                    ->format('%y');
-            });
+            ->withFormat((new DateDiff('Y-m-d', '%y'))->withFromDate('2018-01-01'));
 
         $this->dataProvider->setValues([
             [

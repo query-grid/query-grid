@@ -14,7 +14,7 @@ class Filter
     const GREATER_THAN_OR_EQUAL = 'gte';
     const MATCH_ONE_OPTION = 'm1';
     const MATCH_MANY_OPTIONS = 'mn';
-    /** @var int */
+    /** @var string */
     private $type;
     private $options = [];
     private $name = '';

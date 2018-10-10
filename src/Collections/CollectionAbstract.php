@@ -20,6 +20,12 @@ abstract class CollectionAbstract implements CollectionContract
         $this->items = new \ArrayIterator($items);
     }
 
+
+    public function get($offset)
+    {
+        return $this->offsetGet($offset);
+    }
+
     public function map(callable $callable): CollectionContract
     {
         $collection = new static();

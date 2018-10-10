@@ -8,9 +8,4 @@ class Collection extends CollectionAbstract
     {
         $this->append($value);
     }
-
-    public function get($offset)
-    {
-        return $this->offsetGet($offset);
-    }
 }

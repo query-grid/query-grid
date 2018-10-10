@@ -12,5 +12,7 @@ interface Collection extends \ArrayAccess, \Countable
 
     public function all(): array;
 
+    public function get($index);
+
     public function keyBy(Closure $key, Closure $value = null): array;
 }

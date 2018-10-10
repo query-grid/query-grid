@@ -2,8 +2,6 @@
 
 namespace Willishq\QueryGrid;
 
-use Closure;
-use Willishq\QueryGrid\Collections\Collection;
 use Willishq\QueryGrid\Contracts\Collection as CollectionContract;
 use Willishq\QueryGrid\Columns\Column;
 use Willishq\QueryGrid\Columns\ColumnCollection;
@@ -39,7 +37,7 @@ class GridResult
     }
 
     /**
-     * @return Collection|RowCollection
+     * @return CollectionContract|RowCollection
      */
     public function getRows(): CollectionContract
     {

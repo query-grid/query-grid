@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Tests\Collections;
 
+use Tests\TestCase;
 use Willishq\QueryGrid\Collections\Collection;
 
 class CollectionTest extends TestCase

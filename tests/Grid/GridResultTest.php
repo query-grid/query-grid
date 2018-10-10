@@ -4,6 +4,7 @@ namespace Tests\Grid;
 
 use Willishq\QueryGrid\Columns\Column;
 use Willishq\QueryGrid\Columns\ColumnCollection;
+use Willishq\QueryGrid\Columns\Formatters\Date;
 use Willishq\QueryGrid\GridResult;
 use Willishq\QueryGrid\RowCollection;
 
@@ -63,9 +64,7 @@ class GridResultTest extends \Tests\TestCase
 
         $column = new Column('startedOn', 'Name');
         $column->fromField('created_at');
-        $column->withFormat(function ($value) {
-            return \DateTime::createFromFormat('Y-m-d', $value)->format('d/m/Y');
-        });
+        $column->withFormat(new Date('Y-m-d', 'd/m/Y'));
         $columns->add($column);
         $result = new GridResult($columns);
         $result->setRows([

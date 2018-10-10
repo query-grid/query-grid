@@ -19,17 +19,11 @@ class Column
         $this->label = $label;
     }
 
-    /**
-     * @return mixed
-     */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLabel(): string
     {
         return $this->label;
