@@ -36,7 +36,7 @@ class GridResult
         $this->rows->populate($rows);
     }
 
-    public function getRows(): array
+    public function getRows(): RowCollection
     {
         return $this->rows->map(function (array $row) {
             return $this->columns->keyBy(function (Column $column) {
@@ -44,7 +44,7 @@ class GridResult
             }, function (Column $column) use ($row) {
                 return $this->getValue($column, $row[$column->getField()]);
             });
-        })->all();
+        });
     }
 
     private function getValue(Column $column, $value)

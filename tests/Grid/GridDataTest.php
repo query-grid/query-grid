@@ -90,6 +90,6 @@ class GridDataTest extends TestCase
                 'dob' => '27/06/1983',
                 'age' => '34',
             ]
-        ], $grid->getResult()->getRows());
+        ], $grid->getResult()->getRows()->all());
     }
 }

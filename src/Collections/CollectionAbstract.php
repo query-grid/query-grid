@@ -18,7 +18,7 @@ abstract class CollectionAbstract implements \ArrayAccess, \Countable
         $this->items = new \ArrayIterator($items);
     }
 
-    public function map(callable $callable): Collection
+    public function map(callable $callable): CollectionAbstract
     {
         $collection = new Collection();
         $collection->fill(array_map($callable, $this->all()));

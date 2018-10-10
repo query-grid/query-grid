@@ -5,6 +5,7 @@ namespace Tests\Grid;
 use Willishq\QueryGrid\Columns\Column;
 use Willishq\QueryGrid\Columns\ColumnCollection;
 use Willishq\QueryGrid\GridResult;
+use Willishq\QueryGrid\RowCollection;
 
 class GridResultTest extends \Tests\TestCase
 {
@@ -38,6 +39,7 @@ class GridResultTest extends \Tests\TestCase
             ],
         ]);
 
+        $this->assertInstanceOf(RowCollection::class, $result->getRows());
         $this->assertCount(2, $result->getRows());
         $this->assertEquals([
             [
@@ -46,7 +48,7 @@ class GridResultTest extends \Tests\TestCase
             [
                 'name' => 'Rachel'
             ]
-        ], $result->getRows());
+        ], $result->getRows()->all());
     }
 
     /** @test */
@@ -80,6 +82,7 @@ class GridResultTest extends \Tests\TestCase
             ],
         ]);
 
+        $this->assertInstanceOf(RowCollection::class, $result->getRows());
         $this->assertCount(2, $result->getRows());
         $this->assertEquals([
             [
@@ -91,7 +94,7 @@ class GridResultTest extends \Tests\TestCase
                 'startedOn' => '20/05/1940',
 
             ]
-        ], $result->getRows());
+        ], $result->getRows()->all());
     }
 
     /** @test */
@@ -106,11 +109,13 @@ class GridResultTest extends \Tests\TestCase
         $result = new GridResult($columns);
         $result->setRows([['name' => null]]);
 
-        $data = $result->getRows();
+        $rows = $result->getRows();
+
+        $this->assertInstanceOf(RowCollection::class, $result->getRows());
         $this->assertEquals([
             [
                 'name' => null,
             ]
-        ], $data);
+        ], $rows->all());
     }
 }
