@@ -123,4 +123,24 @@ class ColumnCollectionTest extends TestCase
             $columnAbout,
         ], $columnCollection->getQueryableColumns()->all());
     }
+
+    /** @test */
+    public function itGetsAllSortableFields()
+    {
+        $columnCollection = new ColumnCollection();
+
+        $columnName = new Column('name', 'Name');
+        $columnName->sortable();
+        $columnBirthday = new Column('birthday', 'Date of Birth');
+        $columnBirthday->sortable();
+        $columnAbout = new Column('about', 'about');
+        $columnCollection->add($columnName);
+        $columnCollection->add($columnBirthday);
+        $columnCollection->add($columnAbout);
+
+        $this->assertEquals([
+            $columnName,
+            $columnBirthday,
+        ], $columnCollection->getSortableColumns()->all());
+    }
 }

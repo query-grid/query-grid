@@ -44,4 +44,11 @@ class ColumnCollection extends CollectionAbstract
             return $column->isQueryable();
         });
     }
+
+    public function getSortableColumns()
+    {
+        return $this->filter(function (Column $column) {
+            return $column->isSortable();
+        });
+    }
 }
