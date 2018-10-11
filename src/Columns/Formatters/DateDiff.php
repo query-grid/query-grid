@@ -32,11 +32,11 @@ class DateDiff
     public function __invoke(string $date): string
     {
         $to = $this->createDate($date);
-        if ($to === false) {
+        $from = $this->createDate($this->from);
+
+        if ($to === false || $from === false) {
             return '';
         }
-        $from = $this->createDate($this->from) ?? new DateTime();
-
         return $from->diff($to)->format($this->format);
     }
 
