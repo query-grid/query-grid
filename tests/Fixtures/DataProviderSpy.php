@@ -2,6 +2,7 @@
 
 namespace Tests\Fixtures;
 
+use Willishq\QueryGrid\Columns\OrderBy;
 use Willishq\QueryGrid\Contracts\DataProvider;
 use Willishq\QueryGrid\Query;
 
@@ -12,6 +13,7 @@ class DataProviderSpy implements DataProvider
     public $values = [];
     private $filters = [];
     private $query;
+    private $orderBy = [];
 
     public function getResource(): string
     {
@@ -51,5 +53,15 @@ class DataProviderSpy implements DataProvider
     public function getQuery(): ?Query
     {
         return $this->query;
+    }
+
+    public function getOrderBy()
+    {
+        return $this->orderBy;
+    }
+
+    public function addOrderBy(OrderBy $orderBy)
+    {
+        $this->orderBy[] = $orderBy;
     }
 }

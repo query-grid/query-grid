@@ -59,6 +59,10 @@ class Grid
             $this->setQuery($params['query']);
         }
 
+        if (array_key_exists('sort', $params)) {
+            $this->setOrderBy($params['sort']);
+        }
+
         $result = new GridResult($this->columns);
 
         $result->setRows($this->dataProvider->get());
@@ -96,5 +100,25 @@ class Grid
                 return $column->getField();
             })->unique();
         $this->dataProvider->setQuery(new Query($query, $columns->all()));
+    }
+
+    private function setOrderBy($orderByQuery)
+    {
+        $orderByList = explode(',', $orderByQuery);
+        $descending = [];
+        foreach ($orderByList as $orderBy) {
+            $key = ltrim($orderBy, '-');
+            $descending[$key] = $orderBy !== $key;
+        }
+
+        $sortableColumns = $this->columns->filter(function (Column $column) use ($descending) {
+            return array_key_exists($column->getKey(), $descending);
+        });
+
+        foreach ($sortableColumns as $column) {
+            /** @var Column $column */
+            $column->setOrderBy($descending[$column->getKey()]);
+            $this->dataProvider->addOrderBy($column->getOrderBy());
+        }
     }
 }

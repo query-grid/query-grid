@@ -11,6 +11,7 @@ class Column
     private $filters = [];
     private $sortable = false;
     private $queryable = false;
+    private $orderBy;
 
     public function __construct(string $key, string $label)
     {
@@ -123,5 +124,16 @@ class Column
     public function isFilterable(): bool
     {
         return !empty($this->filters);
+    }
+
+    public function setOrderBy($descending = false)
+    {
+        $this->orderBy = new OrderBy($this->getField());
+        $this->orderBy->setDescending($descending);
+    }
+
+    public function getOrderBy(): ?OrderBy
+    {
+        return $this->orderBy;
     }
 }

@@ -4,7 +4,7 @@ namespace Willishq\QueryGrid\Contracts;
 
 use Closure;
 
-interface Collection extends \ArrayAccess, \Countable, Arrayable
+interface Collection extends \ArrayAccess, \Countable, Arrayable, \Iterator
 {
     public function map(Closure $callable): Collection;
 

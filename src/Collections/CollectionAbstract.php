@@ -110,4 +110,29 @@ abstract class CollectionAbstract implements CollectionContract
             return ($item instanceof Arrayable) ? $item->toArray() : $item;
         })->all();
     }
+
+    public function current()
+    {
+        return $this->items->current();
+    }
+
+    public function next()
+    {
+        $this->items->next();
+    }
+
+    public function key()
+    {
+        return $this->items->key();
+    }
+
+    public function valid()
+    {
+        return $this->items->valid();
+    }
+
+    public function rewind()
+    {
+        $this->items->rewind();
+    }
 }

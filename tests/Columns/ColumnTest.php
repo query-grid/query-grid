@@ -187,4 +187,38 @@ class ColumnTest extends TestCase
             ],
         ], $column->toArray());
     }
+
+    /** @test */
+    public function itCanAddOrderBy()
+    {
+        $column = new Column('k', 'l');
+        $column->setOrderBy();
+        $orderBy = $column->getOrderBy();
+
+        $this->assertFalse($orderBy->isDescending());
+        $this->assertEquals('k', $orderBy->getField());
+    }
+
+    /** @test */
+    public function itCanAddOrderByDescending()
+    {
+        $column = new Column('k', 'l');
+        $column->setOrderBy(true);
+        $orderBy = $column->getOrderBy();
+
+        $this->assertTrue($orderBy->isDescending());
+        $this->assertEquals('k', $orderBy->getField());
+    }
+
+    /** @test */
+    public function itCanAddOrderByWithCustomField()
+    {
+        $column = new Column('k', 'l');
+        $column->fromField('boo');
+        $column->setOrderBy();
+        $orderBy = $column->getOrderBy();
+
+        $this->assertFalse($orderBy->isDescending());
+        $this->assertEquals('boo', $orderBy->getField());
+    }
 }
