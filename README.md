@@ -4,9 +4,9 @@ Framework Agnostic DataGrid / Query Builder implementation.
 
  _Everybody loves badges, check ours out:_
 
-[![Build Status](https://img.shields.io/travis/willishq/query-grid/master.svg?style=flat-square)](https://travis-ci.org/willishq/query-grid)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/willishq/query-grid/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/willishq/query-grid/?branch=master) 
-[![Code Coverage](https://scrutinizer-ci.com/g/willishq/query-grid/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/willishq/query-grid/?branch=master)
+[![Build Status](https://img.shields.io/travis/query-grid/query-grid/master.svg?style=flat-square)](https://travis-ci.org/query-grid/query-grid)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/query-grid/query-grid/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/query-grid/query-grid/?branch=master) 
+[![Code Coverage](https://scrutinizer-ci.com/g/query-grid/query-grid/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/query-grid/query-grid/?branch=master)
 [![StyleCI](https://styleci.io/repos/151885472/shield)](https://styleci.io/repos/151885472)
 
 ## Disclaimer
@@ -18,7 +18,7 @@ and creating the project again from start to finish.
 
 ## Installation
 
-`composer require willishq/query-grid`
+`composer require query-grid/query-grid`
 
 ## Usage
 
