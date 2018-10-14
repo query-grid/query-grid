@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Willishq\QueryGrid\Contracts\Arrayable;
-use Willishq\QueryGrid\PaginationData;
+use QueryGrid\QueryGrid\Contracts\Arrayable;
+use QueryGrid\QueryGrid\PaginationData;
 
 class PaginationDataTest extends TestCase
 {

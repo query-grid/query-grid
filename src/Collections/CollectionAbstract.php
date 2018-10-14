@@ -1,9 +1,9 @@
 <?php
 
-namespace Willishq\QueryGrid\Collections;
+namespace QueryGrid\QueryGrid\Collections;
 
-use Willishq\QueryGrid\Contracts\Arrayable;
-use Willishq\QueryGrid\Contracts\Collection as CollectionContract;
+use QueryGrid\QueryGrid\Contracts\Arrayable;
+use QueryGrid\QueryGrid\Contracts\Collection as CollectionContract;
 
 use Closure;
 

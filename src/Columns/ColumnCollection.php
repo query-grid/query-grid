@@ -1,9 +1,9 @@
 <?php
 
-namespace Willishq\QueryGrid\Columns;
+namespace QueryGrid\QueryGrid\Columns;
 
-use Willishq\QueryGrid\Contracts\Collection as CollectionContract;
-use Willishq\QueryGrid\Collections\CollectionAbstract;
+use QueryGrid\QueryGrid\Contracts\Collection as CollectionContract;
+use QueryGrid\QueryGrid\Collections\CollectionAbstract;
 
 class ColumnCollection extends CollectionAbstract
 {

@@ -2,9 +2,9 @@
 
 namespace Tests\Fixtures;
 
-use Willishq\QueryGrid\Columns\OrderBy;
-use Willishq\QueryGrid\Contracts\DataProvider;
-use Willishq\QueryGrid\Query;
+use QueryGrid\QueryGrid\Columns\OrderBy;
+use QueryGrid\QueryGrid\Contracts\DataProvider;
+use QueryGrid\QueryGrid\Query;
 
 class DataProviderSpy implements DataProvider
 {

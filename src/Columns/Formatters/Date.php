@@ -1,6 +1,6 @@
 <?php
 
-namespace Willishq\QueryGrid\Columns\Formatters;
+namespace QueryGrid\QueryGrid\Columns\Formatters;
 
 class Date
 {

@@ -4,21 +4,21 @@ Framework Agnostic DataGrid / Query Builder implementation.
 
 _Everybody loves badges, check ours out:_
 
-[![Build Status](https://img.shields.io/travis/willishq/query-grid/master.svg?style=flat-square)](https://travis-ci.org/willishq/query-grid)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/willishq/query-grid/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/willishq/query-grid/?branch=master) 
-[![Code Coverage](https://scrutinizer-ci.com/g/willishq/query-grid/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/willishq/query-grid/?branch=master)
+[![Build Status](https://img.shields.io/travis/query-grid/query-grid/master.svg?style=flat-square)](https://travis-ci.org/query-grid/query-grid)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/query-grid/query-grid/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/query-grid/query-grid/?branch=master) 
+[![Code Coverage](https://scrutinizer-ci.com/g/query-grid/query-grid/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/query-grid/query-grid/?branch=master)
 [![StyleCI](https://styleci.io/repos/151885472/shield)](https://styleci.io/repos/151885472)
 
 ## Installation
 
-`composer require willishq/query-grid`
+`composer require query-grid/query-grid`
 
 ## Usage
 
-_You'll need to create an implementation of the `Willishq\QueryGrid\Contracts\DataProvider` interface in order to query the data._
+_You'll need to create an implementation of the `QueryGrid\QueryGrid\Contracts\DataProvider` interface in order to query the data._
 
 ```php
-$grid = new \Willishq\QueryGrid\Grid($dataProvider);
+$grid = new \QueryGrid\QueryGrid\Grid($dataProvider);
 
 $grid->setResource('users'); // The resource sent to the data provider for the query.
 
@@ -29,8 +29,8 @@ $grid->addColumn('started', 'Start Date');
 $result = $grid->getResult();
 ```
 
-if you want to do more stuff to columns, the `addColumn` method returns an instance of the column, so you can set the
-field mapping, add filters, formatting, mark as sortable or queryable:
+if you need to do more with columns, the `addColumn` method returns the column, so you can set the field mapping,
+filters, formatting, mark as sortable or queryable:
 
 ```php
 $column = $grid->addColumn('age', 'Age');
@@ -61,11 +61,105 @@ _Just because this is how I say that they should work in the package, unless you
  `DataProvider` then I can not guarantee this be the case, in fact, if you would rather it worked a different way,
 I recommend creating your own data provider to treat filters, sorting and queries any way you want._
 
+## Using queries, filters and sorting
+
+when you call `$grid->getResult()` you can optionally pass through an array represending the 
+query. The array can have four optional params:
+ 
+ - filters
+ - query
+ - sort
+ - page
+ 
+Of these, page is related to pagination, telling the grid the current page for data.
+
+### Filters
+Filters are a `key:value` representation of a filter query.
+
+The filter key is defined automatically when you add a filter to the grid column.
+
+```php
+$column = $grid->addColumn('name', 'Full Name');
+$column->fromField('full_name');
+$column->addFilter(Filter::CONTAINS);
+$column->addFilter(Filter::STARTS_WITH);
+$column->addFilter(Filter::ENDS_WITH);
+```
+This definition does three things: 
+ - Defines a grid column with the key `name` and label `Full Name`
+ - Defines a field `full_name` which we map the field from
+ - adds a `CONTAINS` filter to the query.
+
+when you call `$grid->getResult()`, if you pass the following array:
+
+```php
+$grid->getResult([
+    'filters' => [
+        'name.con' => 'dre',
+    ],
+]);
+```
+
+This will create a `Filter::CONTAINS` query on the `full_name` field with the value `dre`.
+
+```php
+$grid->getResult([
+    'filters' => [
+        'name.st' => 'and',
+    ],
+]);
+```
+
+Will create a `Filter::STARTS_WITH` query.
+
+The dot syntax for keys, as you probably can tell, follows a `{key}.{filter}` syntax.
+
+When converting the columns to arrays, it includes an array of filters on the fields:
+
+```php
+[
+    [
+        'key' => 'name',
+        'label' => 'First Name',
+        'sortable' => false,
+        'queryable' => false,
+        'filterable' => true,
+        'filters' => [
+            'name.con' => [
+                'type' => 'con', // Filter::CONTAINS
+                'name' => '',
+            ],
+            'name.st' => [
+                'type' => 'st', // Filter::STARTS_WITH
+                'name' => '',
+            ],
+           'name.enw' => [
+                'type' => 'enw', // Filter::ENDS_WITH
+                'name' => '',
+            ],
+        ],
+    ],
+];
+```
+
+if your filters have options, they will be present too:
+```php
+'name.enw' => [
+    'type' => 'm1', // Filter::MATCH_ONE
+    'name' => '',
+    'options' => [
+        [
+            'value' => '',
+            'label' => ''
+        ],
+        ...
+    ],
+],
+```
+
+This enables you to create the UI for the grid based on a filters type and options.
+
 ## Coming soon / Todo
 - Better documentation
-- `GridResult` documentation
-- Filter Options 
-  - dropdown options
-- Better error handling
 - Code of Conduct
 - Laravel data provider package

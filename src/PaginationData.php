@@ -1,8 +1,8 @@
 <?php
 
-namespace Willishq\QueryGrid;
+namespace QueryGrid\QueryGrid;
 
-use Willishq\QueryGrid\Contracts\Arrayable;
+use QueryGrid\QueryGrid\Contracts\Arrayable;
 
 class PaginationData implements Arrayable
 {

@@ -2,8 +2,8 @@
 
 namespace Tests\Grid;
 
-use Willishq\QueryGrid\Columns\Column;
-use Willishq\QueryGrid\Columns\ColumnCollection;
+use QueryGrid\QueryGrid\Columns\Column;
+use QueryGrid\QueryGrid\Columns\ColumnCollection;
 
 class GridColumnsTest extends TestCase
 {

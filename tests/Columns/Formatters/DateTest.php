@@ -3,7 +3,7 @@
 namespace Tests\Columns\Formatters;
 
 use Tests\TestCase;
-use Willishq\QueryGrid\Columns\Formatters\Date;
+use QueryGrid\QueryGrid\Columns\Formatters\Date;
 
 class DateTest extends TestCase
 {

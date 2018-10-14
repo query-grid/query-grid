@@ -1,6 +1,6 @@
 <?php
 
-namespace Willishq\QueryGrid\Columns;
+namespace QueryGrid\QueryGrid\Columns;
 
 class FilterException extends \RuntimeException
 {

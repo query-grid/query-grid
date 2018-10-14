@@ -1,8 +1,8 @@
 <?php
 
-namespace Willishq\QueryGrid;
+namespace QueryGrid\QueryGrid;
 
-use Willishq\QueryGrid\Collections\CollectionAbstract;
+use QueryGrid\QueryGrid\Collections\CollectionAbstract;
 
 class RowCollection extends CollectionAbstract
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Willishq\QueryGrid\Collections;
+namespace QueryGrid\QueryGrid\Collections;
 
 class Collection extends CollectionAbstract
 {

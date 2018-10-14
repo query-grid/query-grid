@@ -3,7 +3,7 @@
 namespace Tests\Columns;
 
 use Tests\TestCase;
-use Willishq\QueryGrid\Columns\OrderBy;
+use QueryGrid\QueryGrid\Columns\OrderBy;
 
 class OrderByTest extends TestCase
 {

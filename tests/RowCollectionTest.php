@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Willishq\QueryGrid\RowCollection;
+use QueryGrid\QueryGrid\RowCollection;
 
 class RowCollectionTest extends TestCase
 {

@@ -3,10 +3,10 @@
 namespace Tests\Columns;
 
 use Tests\TestCase;
-use Willishq\QueryGrid\Collections\CollectionAbstract;
-use Willishq\QueryGrid\Columns\Column;
-use Willishq\QueryGrid\Columns\ColumnCollection;
-use Willishq\QueryGrid\Columns\Filter;
+use QueryGrid\QueryGrid\Collections\CollectionAbstract;
+use QueryGrid\QueryGrid\Columns\Column;
+use QueryGrid\QueryGrid\Columns\ColumnCollection;
+use QueryGrid\QueryGrid\Columns\Filter;
 
 class ColumnCollectionTest extends TestCase
 {

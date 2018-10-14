@@ -3,9 +3,9 @@
 namespace Tests\Grid;
 
 use DateTime;
-use Willishq\QueryGrid\Columns\Formatters\Date;
-use Willishq\QueryGrid\Columns\Formatters\DateDiff;
-use Willishq\QueryGrid\GridResult;
+use QueryGrid\QueryGrid\Columns\Formatters\Date;
+use QueryGrid\QueryGrid\Columns\Formatters\DateDiff;
+use QueryGrid\QueryGrid\GridResult;
 
 class GridDataTest extends TestCase
 {

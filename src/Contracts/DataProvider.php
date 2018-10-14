@@ -1,9 +1,9 @@
 <?php
 
-namespace Willishq\QueryGrid\Contracts;
+namespace QueryGrid\QueryGrid\Contracts;
 
-use Willishq\QueryGrid\Columns\OrderBy;
-use Willishq\QueryGrid\Query;
+use QueryGrid\QueryGrid\Columns\OrderBy;
+use QueryGrid\QueryGrid\Query;
 
 interface DataProvider
 {

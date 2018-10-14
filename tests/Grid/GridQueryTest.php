@@ -2,7 +2,7 @@
 
 namespace Tests\Grid;
 
-use Willishq\QueryGrid\Columns\Filter;
+use QueryGrid\QueryGrid\Columns\Filter;
 
 class GridQueryTest extends TestCase
 {

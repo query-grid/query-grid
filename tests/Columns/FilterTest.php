@@ -3,7 +3,7 @@
 namespace Tests\Columns;
 
 use Tests\TestCase;
-use Willishq\QueryGrid\Columns\Filter;
+use QueryGrid\QueryGrid\Columns\Filter;
 
 class FilterTest extends TestCase
 {
@@ -36,7 +36,7 @@ class FilterTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Willishq\QueryGrid\Columns\FilterException
+     * @expectedException \QueryGrid\QueryGrid\Columns\FilterException
      * @expectedExceptionMessage Trying to set an unknown filter type: invalidFilter
      */
     public function itMustHaveAnExistingFilter()

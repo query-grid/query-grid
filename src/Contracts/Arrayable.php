@@ -1,6 +1,6 @@
 <?php
 
-namespace Willishq\QueryGrid\Contracts;
+namespace QueryGrid\QueryGrid\Contracts;
 
 interface Arrayable
 {

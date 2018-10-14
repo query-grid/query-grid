@@ -1,10 +1,10 @@
 <?php
 
-namespace Willishq\QueryGrid;
+namespace QueryGrid\QueryGrid;
 
-use Willishq\QueryGrid\Contracts\Collection as CollectionContract;
-use Willishq\QueryGrid\Columns\Column;
-use Willishq\QueryGrid\Columns\ColumnCollection;
+use QueryGrid\QueryGrid\Contracts\Collection as CollectionContract;
+use QueryGrid\QueryGrid\Columns\Column;
+use QueryGrid\QueryGrid\Columns\ColumnCollection;
 
 class GridResult
 {

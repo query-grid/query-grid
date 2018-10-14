@@ -1,11 +1,11 @@
 <?php
 
-namespace Willishq\QueryGrid;
+namespace QueryGrid\QueryGrid;
 
-use Willishq\QueryGrid\Columns\Column;
-use Willishq\QueryGrid\Columns\ColumnCollection;
-use Willishq\QueryGrid\Columns\Filter;
-use Willishq\QueryGrid\Contracts\DataProvider;
+use QueryGrid\QueryGrid\Columns\Column;
+use QueryGrid\QueryGrid\Columns\ColumnCollection;
+use QueryGrid\QueryGrid\Columns\Filter;
+use QueryGrid\QueryGrid\Contracts\DataProvider;
 
 class Grid
 {

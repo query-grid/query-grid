@@ -4,7 +4,7 @@ namespace Tests\Grid;
 
 use Tests\Fixtures\DataProviderSpy;
 use Tests\TestCase as BaseTestCase;
-use Willishq\QueryGrid\Grid;
+use QueryGrid\QueryGrid\Grid;
 
 class TestCase extends BaseTestCase
 {

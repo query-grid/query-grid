@@ -2,11 +2,11 @@
 
 namespace Tests\Grid;
 
-use Willishq\QueryGrid\Columns\Column;
-use Willishq\QueryGrid\Columns\ColumnCollection;
-use Willishq\QueryGrid\Columns\Formatters\Date;
-use Willishq\QueryGrid\GridResult;
-use Willishq\QueryGrid\RowCollection;
+use QueryGrid\QueryGrid\Columns\Column;
+use QueryGrid\QueryGrid\Columns\ColumnCollection;
+use QueryGrid\QueryGrid\Columns\Formatters\Date;
+use QueryGrid\QueryGrid\GridResult;
+use QueryGrid\QueryGrid\RowCollection;
 
 class GridResultTest extends \Tests\TestCase
 {

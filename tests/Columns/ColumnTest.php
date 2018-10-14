@@ -3,8 +3,8 @@
 namespace Tests\Columns;
 
 use Tests\TestCase;
-use Willishq\QueryGrid\Columns\Column;
-use Willishq\QueryGrid\Columns\Filter;
+use QueryGrid\QueryGrid\Columns\Column;
+use QueryGrid\QueryGrid\Columns\Filter;
 
 class ColumnTest extends TestCase
 {
@@ -76,7 +76,7 @@ class ColumnTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Willishq\QueryGrid\Columns\ColumnException
+     * @expectedException \QueryGrid\QueryGrid\Columns\ColumnException
      * @expectedExceptionMessage You can only add one of each filter type to a column.
      */
     public function itRejectsDuplicateFilterTypes()

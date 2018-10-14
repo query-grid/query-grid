@@ -1,6 +1,6 @@
 <?php
 
-namespace Willishq\QueryGrid;
+namespace QueryGrid\QueryGrid;
 
 class Query
 {

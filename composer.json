@@ -1,5 +1,5 @@
 {
-  "name": "willishq/query-grid",
+  "name": "query-grid/query-grid",
   "description": "Query builder and DataGrid",
   "license": "MIT",
   "authors": [
@@ -10,7 +10,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Willishq\\QueryGrid\\": "src/"
+      "QueryGrid\\QueryGrid\\": "src/"
     }
   },
   "autoload-dev": {

@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Willishq\QueryGrid\Query;
+use QueryGrid\QueryGrid\Query;
 
 class QueryTest extends TestCase
 {

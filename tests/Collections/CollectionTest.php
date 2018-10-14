@@ -3,7 +3,7 @@
 namespace Tests\Collections;
 
 use Tests\TestCase;
-use Willishq\QueryGrid\Collections\Collection;
+use QueryGrid\QueryGrid\Collections\Collection;
 
 class CollectionTest extends TestCase
 {
@@ -26,7 +26,7 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Willishq\QueryGrid\Collections\CollectionException
+     * @expectedException \QueryGrid\QueryGrid\Collections\CollectionException
      * @expectedExceptionMessage You can not change a collection value that way.
      */
     public function itBlocksSetting()
@@ -37,7 +37,7 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Willishq\QueryGrid\Collections\CollectionException
+     * @expectedException \QueryGrid\QueryGrid\Collections\CollectionException
      * @expectedExceptionMessage You can not unset a collection value that way.
      */
     public function itBlocksUnsetting()

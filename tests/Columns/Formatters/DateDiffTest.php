@@ -3,7 +3,7 @@
 namespace Tests\Columns\Formatters;
 
 use Tests\TestCase;
-use Willishq\QueryGrid\Columns\Formatters\DateDiff;
+use QueryGrid\QueryGrid\Columns\Formatters\DateDiff;
 
 class DateDiffTest extends TestCase
 {
