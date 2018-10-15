@@ -213,4 +213,30 @@ class CollectionTest extends TestCase
 
         $this->assertEquals(['a', 'b', 'c'], $collection->unique()->toArray());
     }
+    /** @test */
+    public function itImplementsIteratorInterfaceCorrectly()
+    {
+        $collection = new Collection();
+        $collection->add(100);
+        $collection->add(101);
+        $collection->add(102);
+
+        $this->assertEquals(0, $collection->key());
+        $this->assertTrue($collection->valid());
+        $this->assertEquals(100, $collection->current());
+        $collection->next();
+        $this->assertEquals(1, $collection->key());
+        $this->assertTrue($collection->valid());
+        $this->assertEquals(101, $collection->current());
+        $collection->next();
+        $this->assertEquals(2, $collection->key());
+        $this->assertTrue($collection->valid());
+        $this->assertEquals(102, $collection->current());
+        $collection->next();
+        $this->assertFalse($collection->valid());
+        $collection->rewind();
+        $this->assertTrue($collection->valid());
+        $this->assertEquals(0, $collection->key());
+        $this->assertEquals(100, $collection->current());
+    }
 }
