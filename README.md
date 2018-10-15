@@ -158,8 +158,3 @@ if your filters have options, they will be present too:
 ```
 
 This enables you to create the UI for the grid based on a filters type and options.
-
-## Coming soon / Todo
-- Better documentation
-- Code of Conduct
-- Laravel data provider package
