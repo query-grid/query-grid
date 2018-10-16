@@ -2,6 +2,7 @@
 
 namespace QueryGrid\QueryGrid;
 
+use ArrayAccess;
 use QueryGrid\QueryGrid\Contracts\Collection as CollectionContract;
 use QueryGrid\QueryGrid\Columns\Column;
 use QueryGrid\QueryGrid\Columns\ColumnCollection;
@@ -57,10 +58,11 @@ class GridResult
             $value = $value[$field];
         } else {
             foreach (explode('.', $field) as $part) {
-                if (!is_array($value) || !isset($value[$part])) {
+                if (($value instanceof ArrayAccess || is_array($value)) && isset($value[$part])) {
+                    $value = $value[$part];
+                } else {
                     return '';
                 }
-                $value = $value[$part];
             }
         }
 

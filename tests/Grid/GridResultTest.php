@@ -2,11 +2,13 @@
 
 namespace Tests\Grid;
 
+use ArrayAccess;
 use QueryGrid\QueryGrid\Columns\Column;
 use QueryGrid\QueryGrid\Columns\ColumnCollection;
 use QueryGrid\QueryGrid\Columns\Formatters\Date;
 use QueryGrid\QueryGrid\GridResult;
 use QueryGrid\QueryGrid\RowCollection;
+use Tests\Fixtures\UserEntity;
 
 class GridResultTest extends \Tests\TestCase
 {
@@ -95,6 +97,41 @@ class GridResultTest extends \Tests\TestCase
         ], $result->getRows()->all());
     }
 
+    /** @test */
+    public function itParsesArrayAccessableObjects()
+    {
+        $columns = new ColumnCollection();
+        $column = new Column('name', 'Name');
+        $column->withFormat(function ($value) {
+            return 'NAME.' . $value;
+        });
+        $columns->add($column);
+
+        $column = new Column('startedOn', 'Name');
+        $column->fromField('created_at');
+        $column->withFormat(new Date('Y-m-d', 'd/m/Y'));
+        $columns->add($column);
+        $result = new GridResult($columns);
+
+        $result->setRows([
+            new UserEntity('Andrew', 'andrew@example.com', '1920-05-20'),
+            new UserEntity('Rachel', 'rachel@example.com', '1940-05-20'),
+        ]);
+
+        $this->assertInstanceOf(RowCollection::class, $result->getRows());
+        $this->assertCount(2, $result->getRows());
+        $this->assertEquals([
+            [
+                'name' => 'NAME.Andrew',
+                'startedOn' => '20/05/1920',
+            ],
+            [
+                'name' => 'NAME.Rachel',
+                'startedOn' => '20/05/1940',
+
+            ]
+        ], $result->getRows()->all());
+    }
 
     /** @test */
     public function itParsesNestedValues()
