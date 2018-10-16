@@ -95,6 +95,83 @@ class GridResultTest extends \Tests\TestCase
         ], $result->getRows()->all());
     }
 
+
+    /** @test */
+    public function itParsesNestedValues()
+    {
+        $columns = new ColumnCollection();
+
+        $column = new Column('name', 'Name');
+        $column->fromField('name.first');
+
+        $columns->add($column);
+
+        $result = new GridResult($columns);
+
+        $result->setRows([
+            [
+                'name' => [
+                    'first' => 'Andrew',
+                ],
+            ],
+            [
+                'name' => [
+                    'first' => 'Rachel',
+                ],
+            ],
+        ]);
+
+        $this->assertInstanceOf(RowCollection::class, $result->getRows());
+        $this->assertCount(2, $result->getRows());
+        $this->assertEquals([
+            [
+                'name' => 'Andrew',
+            ],
+            [
+                'name' => 'Rachel',
+
+            ]
+        ], $result->getRows()->all());
+    }
+
+    /** @test */
+    public function itFailsQuietlyForMissingValues()
+    {
+        $columns = new ColumnCollection();
+
+        $column = new Column('name', 'Name');
+        $column->fromField('name.last');
+
+        $columns->add($column);
+
+        $result = new GridResult($columns);
+
+        $result->setRows([
+            [
+                'name' => [
+                    'first' => 'Andrew',
+                ],
+            ],
+            [
+                'name' => [
+                    'first' => 'Rachel',
+                ],
+            ],
+        ]);
+
+        $this->assertInstanceOf(RowCollection::class, $result->getRows());
+        $this->assertCount(2, $result->getRows());
+        $this->assertEquals([
+            [
+                'name' => '',
+            ],
+            [
+                'name' => '',
+
+            ]
+        ], $result->getRows()->all());
+    }
+
     /** @test */
     public function itHandlesMissingRows()
     {
