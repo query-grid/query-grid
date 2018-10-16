@@ -50,15 +50,14 @@ class GridResult
         });
     }
 
-    private function getValue(Column $column, $row)
+    private function getValue(Column $column, $value)
     {
         $field = $column->getField();
-        $value = $row;
-        if (array_key_exists($field, $row)) {
-            $value = $row[$field];
+        if (isset($value[$field])) {
+            $value = $value[$field];
         } else {
             foreach (explode('.', $field) as $part) {
-                if (!is_array($value) || !array_key_exists($part, $value)) {
+                if (!is_array($value) || !isset($value[$part])) {
                     return '';
                 }
                 $value = $value[$part];
