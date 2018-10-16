@@ -41,17 +41,30 @@ class GridResult
      */
     public function getRows(): CollectionContract
     {
-        return $this->rows->map(function (array $row) {
+        return $this->rows->map(function ($row) {
             return $this->columns->keyBy(function (Column $column) {
                 return $column->getKey();
             }, function (Column $column) use ($row) {
-                return $this->getValue($column, $row[$column->getField()]);
+                return $this->getValue($column, $row);
             });
         });
     }
 
-    private function getValue(Column $column, $value)
+    private function getValue(Column $column, $row)
     {
+        $field = $column->getField();
+        $value = $row;
+        if (array_key_exists($field, $row)) {
+            $value = $row[$field];
+        } else {
+            foreach (explode('.', $field) as $part) {
+                if (!is_array($value) || !array_key_exists($part, $value)) {
+                    return '';
+                }
+                $value = $value[$part];
+            }
+        }
+
         if ($column->hasFormat() && !is_null($value)) {
             return $column->format($value);
         }
