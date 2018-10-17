@@ -18,6 +18,10 @@ class Grid
      */
     private $columns;
 
+    /**
+     * Grid constructor.
+     * @param DataProvider $dataProvider
+     */
     public function __construct(DataProvider $dataProvider)
     {
         $this->dataProvider = $dataProvider;
@@ -32,6 +36,11 @@ class Grid
         return $this->dataProvider;
     }
 
+    /**
+     * @param string $key
+     * @param string $label
+     * @return Column
+     */
     public function addColumn(string $key, string $label): Column
     {
         $column = new Column($key, $label);
@@ -39,16 +48,27 @@ class Grid
         return $column;
     }
 
+    /**
+     * @return ColumnCollection
+     */
     public function getColumns(): ColumnCollection
     {
         return $this->columns;
     }
 
+    /**
+     * @param string $resource
+     * @return void
+     */
     public function setResource(string $resource)
     {
         $this->dataProvider->setResource($resource);
     }
 
+    /**
+     * @param array $params
+     * @return GridResult
+     */
     public function getResult($params = []): GridResult
     {
         if (array_key_exists('filters', $params)) {
@@ -70,6 +90,10 @@ class Grid
         return $result;
     }
 
+    /**
+     * @param Filter[] $filters
+     * @return void
+     */
     private function setFilters($filters)
     {
         $newFilters = [];
@@ -93,6 +117,10 @@ class Grid
         $this->dataProvider->setFilters($newFilters);
     }
 
+    /**
+     * @param mixed $query
+     * @return void
+     */
     private function setQuery($query)
     {
         $columns = $this->columns->getQueryableColumns()
@@ -102,7 +130,11 @@ class Grid
         $this->dataProvider->setQuery(new Query($query, $columns->all()));
     }
 
-    private function setOrderBy($orderByQuery)
+    /**
+     * @param string $orderByQuery
+     * @return void
+     */
+    private function setOrderBy(string $orderByQuery)
     {
         $orderByList = explode(',', $orderByQuery);
         $descending = [];

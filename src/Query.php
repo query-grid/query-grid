@@ -31,6 +31,9 @@ class Query
         return $this->fields;
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return [

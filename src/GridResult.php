@@ -9,15 +9,15 @@ use QueryGrid\QueryGrid\Columns\ColumnCollection;
 
 class GridResult
 {
-    /**
-     * @var ColumnCollection
-     */
+    /** @var ColumnCollection */
     private $columns;
-    /**
-     * @var RowCollection
-     */
+    /** @var RowCollection */
     private $rows;
 
+    /**
+     * GridResult constructor.
+     * @param ColumnCollection $columns
+     */
     public function __construct(ColumnCollection $columns)
     {
         $this->columns = $columns;
@@ -32,6 +32,10 @@ class GridResult
         return $this->columns;
     }
 
+    /**
+     * @param array $rows
+     * @return void
+     */
     public function setRows(array $rows)
     {
         $this->rows->populate($rows);
@@ -51,6 +55,11 @@ class GridResult
         });
     }
 
+    /**
+     * @param Column $column
+     * @param mixed $value
+     * @return mixed|string
+     */
     private function getValue(Column $column, $value)
     {
         $field = $column->getField();
@@ -65,10 +74,6 @@ class GridResult
                 }
             }
         }
-
-        if ($column->hasFormat() && !is_null($value)) {
-            return $column->format($value);
-        }
-        return $value;
+        return $column->format($value);
     }
 }
