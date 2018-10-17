@@ -16,30 +16,45 @@ class Filter
     const MATCH_MANY_OPTIONS = 'mn';
     /** @var string */
     private $type;
+    /** @var array  */
     private $options = [];
+    /** @var string  */
     private $name = '';
+    /** @var mixed */
     private $field;
 
+    /**
+     * Filter constructor.
+     * @param string $type
+     * @throws FilterException
+     * @return void
+     */
     public function __construct(string $type)
     {
-        if (!in_array($type, self::getTypes())) {
+        if (!in_array($type, self::getTypes(), true)) {
             throw FilterException::unknownFilterType($type);
         }
         $this->type = $type;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         $result = [
             'type' => $this->type,
             'name' => $this->name,
         ];
-        if (!empty($this->options)) {
+        if (count($this->options) > 0) {
             $result['options'] = $this->options;
         }
         return $result;
     }
 
+    /**
+     * @return array
+     */
     public static function getTypes(): array
     {
         return [
@@ -56,37 +71,62 @@ class Filter
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getType()
     {
         return $this->type;
     }
 
+    /**
+     * @param string $value
+     * @param string|null $label
+     * @return void
+     */
     public function addOption(string $value, string $label = null)
     {
         $label = $label ?? $value;
         $this->options[] = compact('value', 'label');
     }
 
+    /**
+     * @return array
+     */
     public function getOptions(): array
     {
         return $this->options;
     }
 
+    /**
+     * @param string $name
+     * @return void
+     */
     public function setName(string $name)
     {
         $this->name = $name;
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $field
+     * @return void
+     */
     public function setField(string $field)
     {
         $this->field = $field;
     }
 
+    /**
+     * @return string
+     */
     public function getField(): string
     {
         return $this->field;

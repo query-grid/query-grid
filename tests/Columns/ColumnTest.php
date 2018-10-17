@@ -41,6 +41,14 @@ class ColumnTest extends TestCase
         $this->assertEquals('all_of', $column->format('of'));
         $this->assertSame($response, $column);
     }
+    /** @test */
+    public function itReturnsAValueWhenThereIsNoFormat()
+    {
+        $column = new Column('key', 'label');
+
+        $this->assertFalse($column->hasFormat());
+        $this->assertEquals('of', $column->format('of'));
+    }
 
     /** @test */
     public function itAddsAFilter()

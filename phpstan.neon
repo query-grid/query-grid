@@ -1,0 +1,7 @@
+includes:
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+	ignoreErrors:
+	    - '#Result of method [a-zA-Z]+::[a-zA-Z]+\(\) \(void\) is used.#'
+	    - '#Method [a-zA-Z\\]+::[a-zA-Z]+\(\) should return bool but returns void.#'

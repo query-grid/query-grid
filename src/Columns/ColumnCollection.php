@@ -7,21 +7,34 @@ use QueryGrid\QueryGrid\Collections\CollectionAbstract;
 
 class ColumnCollection extends CollectionAbstract
 {
+    /**
+     * @param Column $column
+     * @return void
+     */
     public function add(Column $column)
     {
         $this->append($column);
     }
 
+    /**
+     * @return Column
+     */
     public function last(): Column
     {
         return $this->offsetGet($this->count() - 1);
     }
 
+    /**
+     * @return Column
+     */
     public function first(): Column
     {
         return $this->offsetGet(0);
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return $this->map(function (Column $column) {
@@ -29,6 +42,9 @@ class ColumnCollection extends CollectionAbstract
         })->all();
     }
 
+    /**
+     * @return array
+     */
     public function getAllFilters()
     {
         $filters = [];
@@ -38,6 +54,9 @@ class ColumnCollection extends CollectionAbstract
         return $filters;
     }
 
+    /**
+     * @return CollectionContract
+     */
     public function getQueryableColumns(): CollectionContract
     {
         return $this->filter(function (Column $column) {
@@ -45,6 +64,9 @@ class ColumnCollection extends CollectionAbstract
         });
     }
 
+    /**
+     * @return CollectionContract
+     */
     public function getSortableColumns()
     {
         return $this->filter(function (Column $column) {
