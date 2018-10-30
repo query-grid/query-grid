@@ -143,4 +143,20 @@ class ColumnCollectionTest extends TestCase
             $columnBirthday,
         ], $columnCollection->getSortableColumns()->all());
     }
+
+    /** @test */
+    public function itCanBeImploded()
+    {
+        $columnCollection = new ColumnCollection();
+
+        $columnCollection->add(new Column('id', 'Id'));
+        $columnCollection->add(new Column('email', 'Email'));
+        $columnCollection->add(new Column('role', 'Role'));
+
+        $implodedCollection = $columnCollection->implode(',', function ($column) {
+            return $column->getLabel();
+        });
+
+        $this->assertEquals('Id,Email,Role', $implodedCollection);
+    }
 }

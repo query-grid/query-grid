@@ -218,4 +218,17 @@ abstract class CollectionAbstract implements CollectionContract
     {
         $this->items->rewind();
     }
+
+    /**
+     * Implodes the collection items.
+     *
+     * @param string   $separator
+     * @param \Closure $callback
+     *
+     * @return string
+     */
+    public function implode($separator, $callback)
+    {
+        return implode($separator, $this->map($callback)->all());
+    }
 }
